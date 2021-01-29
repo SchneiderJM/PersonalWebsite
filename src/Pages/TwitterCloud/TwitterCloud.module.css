@@ -1,0 +1,15 @@
+button, button:active, button:focus {
+    outline: none;
+}
+button{
+    margin-left: 20px;
+}
+
+.image{
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.inputBox {
+    margin: 20px;
+}

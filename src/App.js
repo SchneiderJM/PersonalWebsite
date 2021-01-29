@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from './Navigation/NavigationBar';
+import TwitterCloud from './Pages/TwitterCloud/TwitterCloud';
+import { BrowserRouter, Route } from 'react-router-dom';
+import {useEffect} from 'react';
 
 function App() {
+  //Sets the website's title
+  useEffect(() => document.title = 'Jason\'s Website',[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Route path='/'>
+        <NavigationBar />
+      </Route>
+      <Route exact path='/'>
+        <p>Homepage</p>
+      </Route>
+      <Route path='/Twitter_Cloud'>
+        <TwitterCloud />
+      </Route>
+    </BrowserRouter>
   );
 }
 

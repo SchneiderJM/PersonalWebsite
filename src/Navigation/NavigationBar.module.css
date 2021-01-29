@@ -1,0 +1,4 @@
+/*Removes dashed line from around anchor tags when clicked*/
+a, a:active, a:focus{
+    outline: none;
+}
