@@ -2,3 +2,19 @@
 a, a:active, a:focus{
     outline: none;
 }
+
+button, button:active, button:focus {
+    outline: none;
+}
+button{
+    margin-top: 20px;
+}
+
+.container{
+    margin: auto;
+    max-width: 180px;
+}
+
+.inputBox{
+    background-color: green;
+}
