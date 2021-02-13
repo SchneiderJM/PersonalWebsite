@@ -36,9 +36,15 @@ const TwitterCloud = () => {
     let page = <div>Internal Logic Error</div>;
     //Sets which version of the page shows
     if (showDescription) {
-        page = <div>Description</div>
+        page = <div className={classes.description}>
+                <h1>Twitter WordCloud Generator</h1>
+                <p>
+                    This is a small webapp that searches popular tweets for some search query given to it.
+                    It uses those tweets to produce a word cloud showing which words are associated with
+                    the search query used.
+                </p>
+            </div>
     } else {
-
         page = [
             loading ? <SpinnerBreak key='1' /> :<img className={classes.image} src={image} alt={altText} key='1'/>,
             <input className={classes.inputBox}
