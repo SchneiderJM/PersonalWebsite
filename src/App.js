@@ -4,6 +4,7 @@ import NavigationBar from './Navigation/NavigationBar';
 import TwitterCloud from './Pages/TwitterCloud/TwitterCloud';
 import SubredditClassifier from './Pages/SubredditClassifier/SubredditClassifier';
 import WSBAnalytics from './Pages/WSBAnalytics/WSBAnalytics';
+import Homepage from './Pages/Homepage/Homepage';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {useEffect} from 'react';
 
@@ -16,7 +17,7 @@ function App() {
         <NavigationBar />
       </Route>
       <Route exact path='/'>
-        <p>Homepage</p>
+        <Homepage />
       </Route>
       <Route path='/Twitter_Cloud'>
         <TwitterCloud />
