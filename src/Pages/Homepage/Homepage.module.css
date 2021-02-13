@@ -2,3 +2,7 @@
     display: flex;
     background-color: red;
 }
+.Header{
+    margin: auto;
+    break-after: always;
+}
