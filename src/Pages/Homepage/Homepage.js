@@ -1,12 +1,15 @@
 import React from 'react';
-import classes from './Homepage.module.css'
+import classes from './Homepage.module.css';
+import homeimage from '../../Assets/pug_placeholder.jpg';
 
 const Homepage = () => {
     return(
         <div className={classes.mainContainer}>
-            <h1 className={classes.Header}>Hi, I'm Jason.</h1>
-            <div>Photo</div>
-            <div>Description</div>
+            <div className={classes.Header}>
+                <h1>Hi, I'm Jason.</h1>
+            </div>
+            <img className={classes.Photo} src={homeimage} alt={'Failed to load'}/>
+            <div className={classes.Description}>Description</div>
         </div>
     )
 }

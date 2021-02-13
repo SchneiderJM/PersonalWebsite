@@ -1,8 +1,25 @@
 .mainContainer{
     display: flex;
     background-color: red;
+    flex-wrap: wrap;
 }
 .Header{
     margin: auto;
     break-after: always;
+}
+
+.Photo{
+    max-width: 100vw;
+}
+.Description{
+    width: 100vw;
+}
+
+@media(min-width: 800px){
+    .Photo{
+        max-width: 50vw;
+    }
+    .Description{
+        max-width: 50vw;
+    }
 }
