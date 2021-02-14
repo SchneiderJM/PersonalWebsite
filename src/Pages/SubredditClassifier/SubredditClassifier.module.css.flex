@@ -1,5 +1,5 @@
 .flexcontainer{
-    display: grid;
+    display: flex;
     margin: auto;
     max-width: 200px;
 }
