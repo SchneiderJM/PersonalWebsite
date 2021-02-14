@@ -4,6 +4,10 @@
     max-width: 200px;
 }
 
+.container{
+    break-after: always;
+}
+
 .inputBox{
     max-height: 50px;
     break-after: always;
