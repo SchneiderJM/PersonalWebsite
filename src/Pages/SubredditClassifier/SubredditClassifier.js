@@ -35,21 +35,22 @@ const SubredditClassifier = () => {
         </Row>
         <Row>
             <input 
+                className={classes.inputText}
                 type='text'
                 placeholder='Search Term'
                 onInput={(input) => setSearchTerm(input.target.value)} />
         </Row>
         <Row>
-            <Button variant='dark'  onClick={loading ? () => {} :() => requestClassification(searchTerm)}>Click me</Button>
+            <Button className={classes.runButton} variant='dark'  onClick={loading ? () => {} :() => requestClassification(searchTerm)}>Click me</Button>
         </Row>
     </Container>
     }
 
     return(
-        <div>
+        <div className={classes.flexcontainer}>
             {page}
-            <Button variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
-            <Button variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
+            <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
+            <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
         </div>
     )
 }
