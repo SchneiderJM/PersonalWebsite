@@ -26,7 +26,7 @@ const SubredditClassifier = () => {
     let page = <div>Internal Logic Error</div>;
 
     if (showDescription){
-        page = <div className={classes.container}>Description</div>
+        page = <div className={classes.container}><p>Description</p></div>
     }
     else{
         page = <Container className={classes.container}>
