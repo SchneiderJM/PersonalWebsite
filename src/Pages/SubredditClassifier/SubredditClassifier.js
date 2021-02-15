@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import classes from './SubredditClassifier.module.css'
-import Button from 'react-bootstrap/Button';
+import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import Spinner from '../../UI/Spinner/SpinnerBreak';
 

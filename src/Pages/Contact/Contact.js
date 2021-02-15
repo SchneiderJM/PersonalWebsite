@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Contact.module.css';
-import Button from 'react-bootstrap/button';
+import {Button} from 'react-bootstrap';
 import GitHubLogo from '../../Assets/GitHub_Logo.png';
 import LinkedInLogo from '../../Assets/LinkedIn_Logo.png'
 

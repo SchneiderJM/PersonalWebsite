@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'react-bootstrap';
 import classes from './TwitterCloud.module.css';
 import SpinnerBreak from '../../UI/Spinner/SpinnerBreak';
 
