@@ -10,6 +10,9 @@
 .container{
     break-after: always;
 }
+.header{
+    margin: auto;
+}
 
 .inputBox{
     max-height: 30px;

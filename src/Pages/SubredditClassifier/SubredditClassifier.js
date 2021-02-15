@@ -25,7 +25,7 @@ const SubredditClassifier = () => {
 
     if (showDescription){
         page = <div className={classes.container}>
-                <h1>Subreddit Classifier</h1>
+                <h1 className={classes.header}>Subreddit Classifier</h1>
                 <p>Explanation of what it does</p>
             </div>
     }

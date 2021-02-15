@@ -5,6 +5,7 @@ import TwitterCloud from './Pages/TwitterCloud/TwitterCloud';
 import SubredditClassifier from './Pages/SubredditClassifier/SubredditClassifier';
 //import WSBAnalytics from './Pages/WSBAnalytics/WSBAnalytics';
 import Homepage from './Pages/Homepage/Homepage';
+import Contact from './Pages/Contact/Contact';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {useEffect} from 'react';
 
@@ -28,6 +29,9 @@ function App() {
       {/*<Route path='/WSB_Analytics'>
         <WSBAnalytics />
       </Route>*/}
+      <Route path='/Contact'>
+        <Contact />
+      </Route>
     </BrowserRouter>
   );
 }
