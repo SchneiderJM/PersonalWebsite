@@ -1,6 +1,5 @@
 .flexcontainer{
     justify-content: center;
-    background-color: red;
     display: flex;
     flex-wrap: wrap;
     margin: auto;
@@ -9,7 +8,13 @@
 
 .container{
     break-after: always;
+    margin: 20px;
 }
+
+.classifiedText{
+    break-after: always;
+}
+
 .header{
     margin: auto;
 }

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import classes from './SubredditClassifier.module.css'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import Spinner from '../../UI/Spinner/Spinner';
+import Spinner from '../../UI/Spinner/SpinnerBreak';
 
 const SubredditClassifier = () => {
     const [loading,setLoading] = useState(false);
@@ -26,12 +26,18 @@ const SubredditClassifier = () => {
     if (showDescription){
         page = <div className={classes.container}>
                 <h1 className={classes.header}>Subreddit Classifier</h1>
-                <p>Explanation of what it does</p>
+                <p>The social media website Reddit is an image board subdivided into sections called "Subreddits." These subreddits are based around a certain theme, eg r/WorldNews is about news, r/aww is for photos of cute animals.</p>
+                <p>This app attempts to classify on which Subreddit a post would fit using the post's title. It currently supports six of the most popular Subreddits.</p>
+                <p>The model uses TF-IDF to generate features from the supplied text and then uses XGBoost as a classifier. A Jupyter notebook going over the procedure in more detail can be found here:</p>
+                <a href='https://github.com/SchneiderJM/Subreddit-Classifier'><p>Jupyter Notebook Link</p></a>
             </div>
     }
     else{
         page = [
-            loading ? <Spinner key='1' /> : <p key='1'>{subreddit}</p>,
+            loading ? <Spinner key='1' /> : 
+            <p className={classes.classifiedText} key='1'>
+                This post should go on r/{subreddit}
+            </p>,
             <input 
                 className={classes.inputBox}
                 key='2'

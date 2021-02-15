@@ -37,7 +37,7 @@ const TwitterCloud = () => {
     //Sets which version of the page shows
     if (showDescription) {
         page = <div className={classes.description}>
-                <h1>Twitter WordCloud Generator</h1>
+                <h1 className={classes.header}>Twitter WordCloud Generator</h1>
                 <p>
                     This is a small webapp that searches popular tweets for some search query given to it.
                     It uses those tweets to produce a word cloud showing which words are associated with

@@ -1,4 +1,94 @@
 .flexContainer{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.leftContainer{
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    width: 50%
+}
+
+.rightContainer{
+    display: flex;
+    flex-wrap: wrap;
+    break-after: always;
+    width: 50%
+}
+
+.Headline{
     margin: auto;
+    break-after: always;
+}
+
+#lastName{
+    break-after: always;
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+}
+
+#firstName{
+    break-after: always;
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+}
+
+#email{
+    break-after: always;
+    margin: auto;
+    margin-top: 10px;
+    width: 50%
+}
+
+.nameInputs{
+    margin: auto;
+    break-after: always;
+}
+
+.submitButton{
+    margin: auto;
+    margin-top: 5vh;
+}
+.messageText{
+    margin: auto;
+    margin-top: 10px;
+    break-after: always;
+    width: 50%;
+}
+
+#mediaTitle{
+    break-after: always;
+    margin: auto;
+}
+
+.mediaLinks{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+}
+
+#warning{
+    margin: auto;
+    break-after: always;
+}
+
+.mediaLinks img{
+    overflow: hidden;
+    max-width: 5vw;
+    max-height: 5vh;
+}
+
+@media screen and (max-width: 870px){
+    .leftContainer{
+        width: 100%;
+        break-after: always;
+    }
+    .rightContainer{
+        width: 100%;
+    }
 }

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 const NavigationBar = () => {
     return(
         <Navbar bg='dark' variant='dark'>
-            <Navbar.Brand>Side of bar</Navbar.Brand>
+            <Navbar.Brand>Website</Navbar.Brand>
             <Nav className = 'mr-auto'>
                 <Nav.Link as={Link} to='/' >Homepage</Nav.Link>
                 <Nav.Link as={Link} to='/Twitter_Cloud'>Twitter Cloud</Nav.Link>
