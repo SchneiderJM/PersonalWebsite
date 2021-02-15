@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
 import classes from './SubredditClassifier.module.css'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -26,25 +24,23 @@ const SubredditClassifier = () => {
     let page = <div>Internal Logic Error</div>;
 
     if (showDescription){
-        page = <div className={classes.container}><p>Description</p></div>
+        page = <div className={classes.container}>
+                <h1>Subreddit Classifier</h1>
+                <p>Explanation of what it does</p>
+            </div>
     }
     else{
-        page = <Container className={classes.container}>
-        <Row>
-            {loading ? <Spinner /> : <p>{subreddit}</p>}
-        </Row>
-        <Row>
+        page = [
+            loading ? <Spinner key='1' /> : <p key='1'>{subreddit}</p>,
             <input 
-                className={classes.inputText}
+                className={classes.inputBox}
+                key='2'
                 type='text'
                 placeholder='Search Term'
-                onInput={(input) => setSearchTerm(input.target.value)} />
-        </Row>
-        <Row>
-            <Button className={classes.runButton} variant='dark'  onClick={loading ? () => {} :() => requestClassification(searchTerm)}>Click me</Button>
-        </Row>
-    </Container>
-    }
+                onInput={(input) => setSearchTerm(input.target.value)} />,
+            <Button key='3' className={classes.runButton} variant='dark'  onClick={loading ? () => {} :() => requestClassification(searchTerm)}>Get Classification</Button>
+        ]
+        }
 
     return(
         <div className={classes.flexcontainer}>
