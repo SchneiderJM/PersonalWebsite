@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './Navigation/NavigationBar';
 import TwitterCloud from './Pages/TwitterCloud/TwitterCloud';
 import SubredditClassifier from './Pages/SubredditClassifier/SubredditClassifier';
-//import WSBAnalytics from './Pages/WSBAnalytics/WSBAnalytics';
+import WSBAnalytics from './Pages/WSBAnalytics/WSBAnalytics';
 import Homepage from './Pages/Homepage/Homepage';
 import Contact from './Pages/Contact/Contact';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -26,9 +26,9 @@ function App() {
       <Route path='/Reddit_Classifier'>
         <SubredditClassifier />
       </Route>
-      {/*<Route path='/WSB_Analytics'>
+      <Route path='/WSB_Analytics'>
         <WSBAnalytics />
-      </Route>*/}
+      </Route>
       <Route path='/Contact'>
         <Contact />
       </Route>

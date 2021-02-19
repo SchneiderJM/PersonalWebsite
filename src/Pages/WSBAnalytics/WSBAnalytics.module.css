@@ -1,0 +1,16 @@
+.centred{
+    margin: auto;
+    width: 50%;
+}
+
+table{
+    width: 100%;
+}
+
+.outline{
+    border: 1px solid #dddddd
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
