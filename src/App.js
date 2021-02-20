@@ -7,7 +7,7 @@ import WSBAnalytics from './Pages/WSBAnalytics/WSBAnalytics';
 import Homepage from './Pages/Homepage/Homepage';
 import Contact from './Pages/Contact/Contact';
 import { BrowserRouter, Route } from 'react-router-dom';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 function App() {
   //Sets the website's title
