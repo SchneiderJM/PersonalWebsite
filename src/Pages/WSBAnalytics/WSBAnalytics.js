@@ -21,6 +21,7 @@ const WSBAnalytics = () => {
             <tr key={key}>
                 <td>{tickerCounts[key][0]}</td>
                 <td>{tickerCounts[key][1]}</td>
+                <td>{tickerCounts[key][2]}</td>
             </tr>
         )
     });
@@ -31,6 +32,7 @@ const WSBAnalytics = () => {
                 <thead className={classes.outline}>
                     <tr>
                         <th>Ticker Symbol</th>
+                        <th>Stock Name</th>
                         <th>Count</th>
                     </tr>
                 </thead>
