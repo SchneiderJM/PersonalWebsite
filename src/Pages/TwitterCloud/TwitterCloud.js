@@ -14,7 +14,7 @@ const TwitterCloud = () => {
         setLoading(true);
         let isSubscribed = true;
         //https://upload.wikimedia.org/wikipedia/commons/f/f0/Mops_oct09_cropped2.jpg
-        axios.get('https://us-central1-personalsitefunctions.cloudfunctions.net/sendTwitterCloud',
+        axios.get('https://us-central1-personalsitefunctions-305203.cloudfunctions.net/TwitterCloudGenerator',
             { responseType: 'arraybuffer', params: { query: searchTerm } })
             .then(response => {
                 if (isSubscribed) {
