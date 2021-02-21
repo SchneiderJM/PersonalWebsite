@@ -9,6 +9,7 @@ import emailjs, {init} from 'emailjs-com';
 
 const Contact = () => {
     const [templateParams,setTemplateParams] = useState({});
+    const [confirmation,setConfirmation] = useState(<div></div>);
 
     init('user_QOfx4DszJGZnpEsBPH22V')
     useEffect(() => {
@@ -58,9 +59,12 @@ const Contact = () => {
     const sendEmail = () => {
         emailjs.send('service_6dbwzpd','template_dwqbq4k', templateParams, 'user_QOfx4DszJGZnpEsBPH22V')
             .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
+                if (response.status === 200){
+                    setConfirmation(<p className={classes.responseMessage}>The message was sent successfully</p>)
+                } 
             }, (err) => {
-            console.log('FAILED...', err);
+                setConfirmation(<p className={classes.responseMessage}>The message failed to send</p>)
+                console.log('FAILED...', err);
             }
         );
     };
@@ -86,6 +90,7 @@ const Contact = () => {
                 className={classes.messageText}
                 onInput = {(input) => setMessage(input.target.value)}/>
                 <Button variant='dark' className={classes.submitButton} onClick={sendEmail}>Submit</Button>
+                {confirmation}
             </div>
             <div className={classes.rightContainer}>
                 <h1 id={classes.mediaTitle}>Social Media Links</h1>

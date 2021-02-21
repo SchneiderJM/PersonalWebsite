@@ -3,6 +3,11 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.responseMessage{
+    margin: auto;
+    margin-top: 5vh;
+}
 .leftContainer{
     display: flex;
     flex-wrap: wrap;
@@ -51,6 +56,7 @@
 .submitButton{
     margin: auto;
     margin-top: 5vh;
+    break-after: always;
 }
 .messageText{
     margin: auto;
