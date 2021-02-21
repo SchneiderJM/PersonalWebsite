@@ -2,9 +2,27 @@ import React from 'react';
 import classes from './Contact.module.css';
 import {Button} from 'react-bootstrap';
 import GitHubLogo from '../../Assets/GitHub_Logo.png';
-import LinkedInLogo from '../../Assets/LinkedIn_Logo.png'
+import LinkedInLogo from '../../Assets/LinkedIn_Logo.png';
+//import emailjs from 'emailjs-com';
+
+
 
 const Contact = () => {
+
+
+    /*const templateParams = {
+        name: 'James',
+        notes: 'Check this out!'
+    };
+     
+    emailjs.send('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', templateParams, '<YOUR USER ID>')
+        .then((response) => {
+           console.log('SUCCESS!', response.status, response.text);
+        }, (err) => {
+           console.log('FAILED...', err);
+        });*/
+
+    
     return(
         <div className={classes.flexContainer}>
             <div className={classes.leftContainer}>

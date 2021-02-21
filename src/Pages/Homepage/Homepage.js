@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Homepage.module.css';
-import homeimage from '../../Assets/pug_placeholder.jpg';
+import homeimage from '../../Assets/RAID.jpg';
 
 const Homepage = () => {
     return(

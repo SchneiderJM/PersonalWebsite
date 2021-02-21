@@ -14,7 +14,7 @@ const SubredditClassifier = () => {
         //I feel like I should do something here, maybe it's just if I'm using useEffect which I'm not idk
         //let isSubscribed = true;
         axios.get('https://subreddit-classifier-rawtnoo3mq-uc.a.run.app/', {params: {query: searchTerm}})
-        .then(response => {
+        .then(response => { 
             setSubreddit(response['data']['subredditName']);
             setLoading(false);
             
