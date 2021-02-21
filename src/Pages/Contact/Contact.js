@@ -1,39 +1,91 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import classes from './Contact.module.css';
 import {Button} from 'react-bootstrap';
 import GitHubLogo from '../../Assets/GitHub_Logo.png';
 import LinkedInLogo from '../../Assets/LinkedIn_Logo.png';
-//import emailjs from 'emailjs-com';
+import emailjs, {init} from 'emailjs-com';
 
 
 
 const Contact = () => {
+    const [templateParams,setTemplateParams] = useState({});
 
+    init('user_QOfx4DszJGZnpEsBPH22V')
+    useEffect(() => {
+        setTemplateParams({
+            firstName: 'First Name',
+            lastName: 'Last Name',
+            message: 'this is the message, please clap',
+            reply_to: 'fuckoffnsa'
+        });
+    },[]);
 
-    /*const templateParams = {
-        name: 'James',
-        notes: 'Check this out!'
+    const setFirstName = (firstName) => {
+        setTemplateParams( prevTemplate => {
+            return{
+                ...prevTemplate,
+                firstName: firstName
+            }
+        })
     };
-     
-    emailjs.send('<YOUR SERVICE ID>','<YOUR TEMPLATE ID>', templateParams, '<YOUR USER ID>')
-        .then((response) => {
-           console.log('SUCCESS!', response.status, response.text);
-        }, (err) => {
-           console.log('FAILED...', err);
-        });*/
+
+    const setLastName = (lastName) => {
+        setTemplateParams(prevTemplate => {
+            return{
+                ...prevTemplate,
+                lastName: lastName
+            }
+        })
+    };
+
+    const setEmail = (email) => {
+        setTemplateParams(prevTemplate => {
+            return{
+                ...prevTemplate,
+                reply_to: email
+            }
+        })
+    };
+
+    const setMessage = (message) => {
+        setTemplateParams(prevTemplate => {
+            return{
+                ...prevTemplate,
+                message: message
+            }
+        })
+    }
+    const sendEmail = () => {
+        emailjs.send('service_6dbwzpd','template_dwqbq4k', templateParams, 'user_QOfx4DszJGZnpEsBPH22V')
+            .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            }, (err) => {
+            console.log('FAILED...', err);
+            }
+        );
+    };
 
     
     return(
         <div className={classes.flexContainer}>
             <div className={classes.leftContainer}>
                 <h1 className={classes.Headline}>Contact me via email</h1>
-                <p id={classes.warning}>This doesn't work yet so I won't reply</p>
-                <input placeholder='First Name' id={classes.firstName}/>
-                <input placeholder='Last Name'  id={classes.lastName}/>
+                <p id={classes.warning}>This works now but I still won't reply.</p>
+                <input placeholder='First Name' 
+                id={classes.firstName}
+                type='text'
+                onInput = {input => {setFirstName(input.target.value)}}/>
+                <input placeholder='Last Name'
+                id={classes.lastName}
+                onInput = {(input) => setLastName(input.target.value)}/>
 
-                <input placeholder='Your Email' id={classes.email}/>
-                <textarea placeholder='Message' className={classes.messageText}/>
-                <Button variant='dark' className={classes.submitButton}>Submit</Button>
+                <input placeholder='Your Email' 
+                id={classes.email}
+                onInput = {(input) => setEmail(input.target.value)}/>
+                <textarea placeholder='Message' 
+                className={classes.messageText}
+                onInput = {(input) => setMessage(input.target.value)}/>
+                <Button variant='dark' className={classes.submitButton} onClick={sendEmail}>Submit</Button>
             </div>
             <div className={classes.rightContainer}>
                 <h1 id={classes.mediaTitle}>Social Media Links</h1>
