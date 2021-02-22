@@ -74,7 +74,7 @@ const Contact = () => {
         <div className={classes.flexContainer}>
             <div className={classes.leftContainer}>
                 <h1 className={classes.Headline}>Contact me via email</h1>
-                <p id={classes.warning}>This works now but I still won't reply.</p>
+                <p id={classes.warning}>You can contact me using the form below</p>
                 <input placeholder='First Name' 
                 id={classes.firstName}
                 type='text'
