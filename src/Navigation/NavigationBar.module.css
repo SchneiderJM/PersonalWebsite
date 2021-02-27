@@ -10,6 +10,11 @@ button{
     margin-top: 20px;
 }
 
+.NavBar{
+    position: fixed;
+    width: 100%
+}
+
 .container{
     margin: auto;
     max-width: 180px;

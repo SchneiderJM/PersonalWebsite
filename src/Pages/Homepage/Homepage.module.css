@@ -7,7 +7,6 @@
     margin-top: 10vh;
     margin-bottom: 10vh;
     break-after: always;
-    border: 2px solid rgb(212, 212, 212);
     border-radius: 8px;
     padding: 1rem;
 }
@@ -19,6 +18,7 @@
     margin: auto;
     width: 100vw;
     padding: 5vw;
+    break-after: always;
 }
 
 @media screen and (min-width: 800px){

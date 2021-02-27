@@ -12,6 +12,7 @@ const Homepage = () => {
             <div className={classes.Description}><p>I am currently employed as a data scientist 
                 at Rattlehub Digital where I work on predictive insights models for financial advisors
                 as well as digital engagement for collection of estate data. </p> </div>
+            <div><p>More text</p></div>
         </div>
     )
 }
