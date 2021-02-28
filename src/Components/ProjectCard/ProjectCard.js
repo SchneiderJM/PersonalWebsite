@@ -9,7 +9,7 @@ const ProjectCard = (props) => {
                 <h1 key={props.keyValue+1} className={classes.ProjectTitle}>{props.Name}</h1>,
                 <img key={props.keyValue} className={classes.ProjectLogo} src={props.Logo} alt='Logo Not Found' />,
                 <p key={props.keyValue+2} className={classes.ProjectDescription}>{props.Description}</p>,
-                <div></div>
+                <div key={props.keyValue+3}></div>
             ])
         } else {
             setCardChildren([

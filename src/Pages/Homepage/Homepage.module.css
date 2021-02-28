@@ -21,13 +21,15 @@
     width: 100vw;
     padding: 5vw;
     break-after: always;
+    margin-top: 5vh;
 }
 
 .projectCardContainer{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
 }
 
 @media screen and (min-width: 800px){

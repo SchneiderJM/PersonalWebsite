@@ -14,7 +14,7 @@
     background-color: #eeeeee;
     margin: 2%;
     border-radius: 10px;
-    max-width: 45vw;
+    width: 90vw;
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 30% 70%;
@@ -37,7 +37,7 @@
     background-color: #eeeeee;
     margin: 2%;
     border-radius: 10px;
-    max-width: 45vw;
+    width: 90vw;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 30% 70%;
@@ -54,4 +54,13 @@
 .leftCard p{
     font-size: 15px;
     margin: 2rem;
+}
+
+@media screen and (min-width: 800px){
+    .leftCard{
+        width: 45vw;
+    }
+    .rightCard{
+        width: 45vw;
+    }
 }
