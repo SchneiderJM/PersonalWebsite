@@ -1,0 +1,57 @@
+/*.leftCard{
+    background-color: #eeeeee;
+    margin-left: 2vw;
+    width: 20vw;
+}
+
+.rightCard{
+    background-color: #eeeeee;
+    margin-right: 2vw;
+    width: 20vw;
+}*/
+
+.rightCard{
+    background-color: #eeeeee;
+    margin: 2%;
+    border-radius: 10px;
+    max-width: 45vw;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 30% 70%;
+}
+
+.rightCard img{
+    max-width: 20vw;
+}
+
+.rightCard h1{
+    margin: 2rem;
+}
+
+.rightCard p{
+    font-size: 15px;
+    margin: 2rem;
+}
+
+.leftCard{
+    background-color: #eeeeee;
+    margin: 2%;
+    border-radius: 10px;
+    max-width: 45vw;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 30% 70%;
+}
+
+.leftCard img{
+    max-width: 20vw;
+}
+
+.leftCard h1{
+    margin: 2rem;
+}
+
+.leftCard p{
+    font-size: 15px;
+    margin: 2rem;
+}
