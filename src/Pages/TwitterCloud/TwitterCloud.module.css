@@ -11,6 +11,7 @@ button{
     margin: 0.5em;
 }
 
+
 .flexcontainer{
     display: flex;
     justify-content: center;
@@ -31,6 +32,7 @@ button{
     max-height: 50px;
     break-after: always;
     margin: 0.5em;
+    margin-top: 8vh;
 }
 
 .runButton{

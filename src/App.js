@@ -14,8 +14,10 @@ import bg from './Assets/bg.jpg'
 function App() {
   //Sets the website's title
   useEffect(() => document.title = 'Jason\'s Website',[]);
+  // style={{backgroundImage:`url(${bg})`}}
   return (
-    <div className={classes.Router} style={{backgroundImage:`url(${bg})`}}>
+    <div className={classes.Router}>
+      <img src={bg} className = {classes.backgroundImage} alt = 'uh oh' />
       <BrowserRouter className={classes.Router}>
         <Route path='/'>
           <NavigationBar />

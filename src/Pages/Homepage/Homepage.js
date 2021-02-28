@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Homepage.module.css';
 import homeimage from '../../Assets/pug_placeholder.jpg';
+import ProjectCard from '../../Components/ProjectCard/ProjectCard';
 
 const Homepage = () => {
     return(
@@ -12,7 +13,7 @@ const Homepage = () => {
             <div className={classes.Description}><p>I am currently employed as a data scientist 
                 at Rattlehub Digital where I work on predictive insights models for financial advisors
                 as well as digital engagement for collection of estate data. </p> </div>
-            <div><p>More text</p></div>
+            <ProjectCard Name='Sample Project' Logo={homeimage} />
         </div>
     )
 }
