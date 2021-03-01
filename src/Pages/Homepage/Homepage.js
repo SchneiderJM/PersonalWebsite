@@ -35,6 +35,15 @@ const Homepage = () => {
                     orientLeft={false}
                     Link='/Reddit_Classifier'
                 />
+                <ProjectCard
+                    keyValue={0}
+                    Name='WallStreetBets Analytics'
+                    Logo={WordcloudLogo}
+                    Description='A bunch of analytics on the subreddit WallStreetBets, an alleged culprit
+                    behind the 2021 GME run'
+                    orientLeft={true}
+                    Link='/WSB_Analytics'
+                />
             </div>
         </div>
     )

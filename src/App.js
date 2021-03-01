@@ -9,7 +9,7 @@ import Contact from './Pages/Contact/Contact';
 import { BrowserRouter, Route } from 'react-router-dom';
 import React, {useEffect} from 'react';
 import classes from './App.module.css';
-import bg from './Assets/bg.jpg'
+import bg from './Assets/bg_1920.jpg'
 
 function App() {
   //Sets the website's title

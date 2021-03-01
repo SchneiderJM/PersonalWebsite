@@ -7,17 +7,17 @@ const ProjectCard = (props) => {
     useEffect(()=>{
         if (props.orientLeft){
             setCardChildren([
-                <Link to={props.Link}><h1 key={props.keyValue+1} className={classes.ProjectTitle}>{props.Name}</h1></Link>,
-                <Link to={props.Link}><img key={props.keyValue} className={classes.ProjectLogo} src={props.Logo} alt='Logo Not Found' /></Link>,
-                <Link to={props.Link}><p key={props.keyValue+2} className={classes.ProjectDescription}>{props.Description}</p></Link>,
-                <Link to={props.Link}><div key={props.keyValue+3}></div></Link>
+                <Link key={props.keyValue}to={props.Link}><h1 className={classes.ProjectTitle}>{props.Name}</h1></Link>,
+                <Link key={props.keyValue+1} to={props.Link}><img className={classes.ProjectLogo} src={props.Logo} alt='Logo Not Found' /></Link>,
+                <Link key={props.keyValue+2} to={props.Link}><p className={classes.ProjectDescription}>{props.Description}</p></Link>,
+                <Link key={props.keyValue+3} to={props.Link}><div></div></Link>
             ])
         } else {
             setCardChildren([
-                <Link to={props.Link}><img key={props.keyValue+2} className={classes.ProjectLogo} src={props.Logo} alt='Logo Not Found' /></Link>,
-                <Link to={props.Link}><h1 key={props.keyValue} className={classes.ProjectTitle}>{props.Name}</h1></Link>,
-                <Link to={props.Link}><div key={props.keyValue+3}></div></Link>,
-                <Link to={props.Link}><p key={props.keyValue+1} className={classes.ProjectDescription}>{props.Description}</p></Link>
+                <Link key={props.keyValue} to={props.Link}><img className={classes.ProjectLogo} src={props.Logo} alt='Logo Not Found' /></Link>,
+                <Link key={props.keyValue+1} to={props.Link}><h1 className={classes.ProjectTitle}>{props.Name}</h1></Link>,
+                <Link key={props.keyValue+2} to={props.Link}><div></div></Link>,
+                <Link key={props.keyValue+3} to={props.Link}><p className={classes.ProjectDescription}>{props.Description}</p></Link>
             ])
         }
     },[props.Description,props.Logo,props.Name,props.keyValue,props.orientLeft,props.Link]);
