@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import classes from './NavigationBar.module.css';
 import HamburgerIcon from '../Assets/Hamburger_Menu.png';
 
 const NavigationBar = () => {
+    const [showBar,setShowBar] = useState(false);
     return(
         <>
-        <img className={classes.Hamburger} src={HamburgerIcon} alt='Where the Burger???' />
+        <img className={classes.Hamburger} 
+            src={HamburgerIcon} 
+            alt='Where the Burger???' 
+            onClick={() => setShowBar(!showBar)}/>
         <Navbar bg='dark' variant='dark' className={classes.NavBar}>
             <Navbar.Brand>Website</Navbar.Brand>
             <Nav className = 'mr-auto'>

@@ -37,9 +37,9 @@ const Homepage = () => {
                 />
                 <ProjectCard
                     keyValue={0}
-                    Name='WallStreetBets Analytics'
+                    Name='WSB Analytics'
                     Logo={WordcloudLogo}
-                    Description='A bunch of analytics on the subreddit WallStreetBets, an alleged culprit
+                    Description='A bunch of analytics on the popular online forum r/WallStreetBets, an alleged culprit
                     behind the 2021 GME run'
                     orientLeft={true}
                     Link='/WSB_Analytics'

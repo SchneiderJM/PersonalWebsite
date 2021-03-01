@@ -18,18 +18,19 @@
     margin-right: 2vw;
     width: 96vw;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 30% 70%;
 }
 
 .rightCard img{
     max-width: 45vw;
     margin-left: 2vw;
+    margin-top: 2vh;
 }
 
 .rightCard h1{
     margin: 2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
 }
 
@@ -47,18 +48,19 @@
     border-radius: 10px;
     width: 96vw;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 30% 70%;
 }
 
 .leftCard img{
     max-width: 45vw;
     margin-right: 2vw;
+    margin-top: 2vh;
 }
 
 .leftCard h1{
     margin: 2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
 }
 
