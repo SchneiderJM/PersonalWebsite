@@ -49,7 +49,7 @@ const SubredditClassifier = () => {
         }
 
     return(
-        <div className={classes.flexcontainer}>
+        <div className={showDescription ? classes.flexcontainer : classes.gridcontainer}>
             {page}
             <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
             <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>

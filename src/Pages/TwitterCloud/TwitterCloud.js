@@ -46,7 +46,7 @@ const TwitterCloud = () => {
             </div>
     } else {
         page = [
-            loading ? <SpinnerBreak key='1' /> :<img className={classes.image} src={image} alt={altText} key='1'/>,
+            loading ? <SpinnerBreak key='1' className={classes.image}/> :<img className={classes.image} src={image} alt={altText} key='1'/>,
             <input className={classes.inputBox}
                 type='text'
                 placeholder='Search Term'
@@ -57,7 +57,7 @@ const TwitterCloud = () => {
     };
 
     return (
-        <div className={classes.flexcontainer}>
+        <div className={showDescription ? classes.flexcontainer : classes.gridcontainer}>
             {page}
             <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
             <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>

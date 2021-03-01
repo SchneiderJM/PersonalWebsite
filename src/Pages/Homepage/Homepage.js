@@ -42,7 +42,7 @@ const Homepage = () => {
                     Name='WSB Analytics'
                     Logo={WSBLogo}
                     Description='A bunch of analytics on the popular online forum r/WallStreetBets, an alleged culprit
-                    behind the 2021 GME run'
+                    behind the 2021 GME run.'
                     orientLeft={true}
                     Link='/WSB_Analytics'
                 />

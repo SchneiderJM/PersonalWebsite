@@ -9,8 +9,15 @@ button{
 .image{
     break-after: always;
     margin: 0.5em;
+    grid-column: span 2;
 }
 
+.gridcontainer{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 50%;
+    margin: auto;
+}
 
 .flexcontainer{
     display: flex;
@@ -25,27 +32,51 @@ button{
 
 .description{
     margin: 20px;
-    break-after: always;
     width: 100%;
 }
 
 .inputBox{
     max-height: 50px;
-    break-after: always;
     margin: 0.5em;
     margin-top: 8vh;
+    grid-column: span 2;
 }
 
 .runButton{
     max-height: 50px;
-    break-after: always;
     margin: 0.5em;
+    grid-column: span 2;
 }
 
 .nextButton{
     margin: 0.5em;
+    grid-column: span 1;
 }
 
 .prevButton{
     margin: 0.5em;
+    align-content: right;
+    grid-column: span 1;
+}
+
+@media screen and (max-width: 600px){
+    .gridcontainer{
+        grid-template-columns: 100%;
+    }
+    .runButton{
+        grid-column: span 1;
+    }
+    .inputBox{
+        grid-column: span 1;
+    }
+    .image{
+        margin-top: 20vh;
+        grid-column: span 1;
+    }
+    .header{
+        margin-top: 10vh;
+    }
+    .gridcontainer{
+        width: 70%;
+    }
 }
