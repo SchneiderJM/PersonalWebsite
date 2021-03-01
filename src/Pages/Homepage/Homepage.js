@@ -3,6 +3,7 @@ import classes from './Homepage.module.css';
 import homeimage from '../../Assets/pug_placeholder.jpg';
 import ProjectCard from '../../Components/ProjectCard/ProjectCard';
 import WordcloudLogo from '../../Assets/WordcloudLogo.png';
+import WSBLogo from '../../Assets/WSBKidLong.png';
 
 const Homepage = () => {
     return(
@@ -29,8 +30,8 @@ const Homepage = () => {
                     keyValue={0}
                     Name='Subreddit Post Classifier'
                     Logo={WordcloudLogo}
-                    Description='This takes a search term to function as a potential title for a Reddit post and
-                        uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
+                    Description='This takes a term to function as a potential title for a 
+                        Reddit post and uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
                         such a post would best fit.'
                     orientLeft={false}
                     Link='/Reddit_Classifier'
@@ -38,7 +39,7 @@ const Homepage = () => {
                 <ProjectCard
                     keyValue={0}
                     Name='WSB Analytics'
-                    Logo={WordcloudLogo}
+                    Logo={WSBLogo}
                     Description='A bunch of analytics on the popular online forum r/WallStreetBets, an alleged culprit
                     behind the 2021 GME run'
                     orientLeft={true}
