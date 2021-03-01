@@ -26,6 +26,7 @@ button{
 .description{
     margin: 20px;
     break-after: always;
+    width: 100%;
 }
 
 .inputBox{

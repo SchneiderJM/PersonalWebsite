@@ -9,6 +9,8 @@
     break-after: always;
     border-radius: 8px;
     padding: 1rem;
+    width: 100vw;
+    text-align: center;
 }
 
 .Photo{
