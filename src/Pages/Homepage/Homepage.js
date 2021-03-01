@@ -3,7 +3,8 @@ import classes from './Homepage.module.css';
 import homeimage from '../../Assets/pug_placeholder.jpg';
 import ProjectCard from '../../Components/ProjectCard/ProjectCard';
 import WordcloudLogo from '../../Assets/WordcloudLogo.png';
-import WSBLogo from '../../Assets/WSBKidLong.png';
+import WSBLogo from '../../Assets/WSB_Logo.png';
+import RedditLogo from '../../Assets/Reddit_Logo.png';
 
 const Homepage = () => {
     return(
@@ -29,7 +30,7 @@ const Homepage = () => {
                 <ProjectCard
                     keyValue={0}
                     Name='Subreddit Post Classifier'
-                    Logo={WordcloudLogo}
+                    Logo={RedditLogo}
                     Description='This takes a term to function as a potential title for a 
                         Reddit post and uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
                         such a post would best fit.'
