@@ -30,11 +30,13 @@
 .rightCard h1{
     margin: 2rem;
     font-size: 2rem;
+    color: black;
 }
 
 .rightCard p{
     font-size: 1rem;
     margin: 2rem;
+    color: black;
 }
 
 .leftCard{
@@ -57,12 +59,19 @@
 .leftCard h1{
     margin: 2rem;
     font-size: 2rem;
+    color: black;
 }
 
 .leftCard p{
     font-size: 1rem;
     margin: 2rem;
+    color: black;
 }
+
+a:hover{
+    text-decoration: none;
+}
+
 
 @media screen and (min-width: 800px){
     .leftCard{

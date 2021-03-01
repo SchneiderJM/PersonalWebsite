@@ -14,20 +14,26 @@ const Homepage = () => {
             <div className={classes.Description}><p>I am currently employed as a data scientist 
                 at Rattlehub Digital where I work on predictive insights models for financial advisors
                 as well as digital engagement for collection of estate data. </p> </div>
-            <div className={classes.projectCardContainer}>
-                <ProjectCard 
+            <div className={classes.projectCardContainer}><ProjectCard 
                     keyValue={0} 
-                    Name='Sample Project' 
+                    Name='Twitter Wordcloud Generator' 
                     Logo={WordcloudLogo} 
-                    Description='This is a project description it just goes on and on for a long ass time until we see exactly what happens when it needs to break to a new line' 
+                    Description='This is a small web app. 
+                    It takes a search term, checks Twitter for popular tweets containing that term, 
+                    and compiles a wordcloud showing which words are associated with the search term 
+                    in popular tweets.' 
                     orientLeft={true}
+                    Link='/Twitter_Cloud'
                 />
                 <ProjectCard
                     keyValue={0}
-                    Name='Sample Right Project'
+                    Name='Subreddit Post Classifier'
                     Logo={WordcloudLogo}
-                    Description='This tests a right-oriented card'
+                    Description='This takes a search term to function as a potential title for a Reddit post and
+                        uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
+                        such a post would best fit.'
                     orientLeft={false}
+                    Link='/Reddit_Classifier'
                 />
             </div>
         </div>
