@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import classes from './TwitterCloud.module.css';
 import SpinnerBreak from '../../UI/Spinner/SpinnerBreak';
-import WSB from '../../Assets/WSB_Logo.png';
 
 const TwitterCloud = () => {
     const [showDescription, setShowDescription] = useState(true);

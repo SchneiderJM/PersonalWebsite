@@ -69,7 +69,6 @@ button{
 @media screen and (max-width: 600px){
     .image{
         margin-top: 20vh;
-        grid-column: span 1;
     }
     .header{
         margin-top: 10vh;
