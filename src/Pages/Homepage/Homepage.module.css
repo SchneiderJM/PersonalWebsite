@@ -6,7 +6,6 @@
     margin: auto;
     margin-top: 10vh;
     margin-bottom: 10vh;
-    break-after: always;
     border-radius: 8px;
     padding: 1rem;
     width: 100vw;
@@ -24,7 +23,6 @@
     margin: auto;
     width: 96vw;
     padding: 5vw;
-    break-after: always;
     margin-top: 5vh;
     margin-left: 2vw;
     margin-right: 2vw;

@@ -15,7 +15,6 @@
 }
 
 .image{
-    align-items: center;
     grid-column: span 2;
 }
 
@@ -62,5 +61,6 @@
     }
     .gridcontainer{
         width: 70%;
+        align-items: center;
     }
 }
