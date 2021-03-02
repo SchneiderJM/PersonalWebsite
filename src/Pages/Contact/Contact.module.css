@@ -85,9 +85,11 @@
         width: 100%;
     }
     .Headline{
+        text-align: center;
         margin-top: 15vh;
     }
     #mediaTitle{
+        text-align: center;
         margin-top: 10vh;
     }
 }
