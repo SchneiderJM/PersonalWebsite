@@ -34,7 +34,7 @@ const SubredditClassifier = () => {
     }
     else{
         page = [
-            loading ? <Spinner key='1' /> : 
+            loading ? <Spinner key='1' className={classes.image}/> : 
             <p className={classes.classifiedText} key='1'>
                 This post should go on r/{subreddit}
             </p>,

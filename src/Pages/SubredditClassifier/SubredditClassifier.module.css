@@ -11,6 +11,12 @@
     grid-template-columns: 50% 50%;
     width: 50%;
     margin: auto;
+    align-items: center;
+}
+
+.image{
+    align-items: center;
+    grid-column: span 2;
 }
 
 .container{
