@@ -8,13 +8,13 @@ table{
 }
 
 .outline{
-    border: 1px solid #dddddd
+    border: 1px solid grey
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
 }
 tr:nth-child(odd){
-    background-color: black;
+    background-color: rgb(0,0,40);
     color: white;
 }

@@ -38,6 +38,10 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.rightGrid p{
+    margin-left: 1vw;
+}
+
 .leftCard img{
     max-width: 45vw;
     margin-right: 2vw;

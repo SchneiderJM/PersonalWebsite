@@ -11,7 +11,7 @@
     grid-template-columns: 50% 50%;
     width: 50%;
     margin: auto;
-    align-items: center;
+    justify-items: center;
 }
 
 .image{
@@ -28,28 +28,33 @@
 
 .header{
     margin: auto;
+    text-align: center;
 }
 
 .inputBox{
     max-height: 30px;
     margin: 0.5em;
     grid-column: span 2;
+    width: 100%;
 }
 
 .runButton{
     max-height: 50px;
     margin: 0.5em;
-    grid-column: span 2
+    grid-column: span 2;
+    width: 100%;
 }
 
 .nextButton{
     margin: 0.5em;
     grid-column: span 1;
+    width: 20vw;
 }
 
 .prevButton{
     margin: 0.5em;
     grid-column: span 1;
+    width: 20vw;
 }
 
 @media screen and (max-width: 600px){

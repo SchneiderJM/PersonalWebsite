@@ -9,6 +9,8 @@ button{
 .image{
     margin: 0.5em;
     grid-column: span 2;
+    width: 50%;
+    justify-content: center;
 }
 
 .gridcontainer{
@@ -16,6 +18,7 @@ button{
     grid-template-columns: 50% 50%;
     width: 50%;
     margin: auto;
+    justify-items: center;
 }
 
 .flexcontainer{
@@ -27,6 +30,7 @@ button{
 
 .header{
     margin: auto;
+    text-align: center;
 }
 
 .description{
@@ -39,35 +43,30 @@ button{
     margin: 0.5em;
     margin-top: 8vh;
     grid-column: span 2;
+    width: 100%;
 }
 
 .runButton{
     max-height: 50px;
     margin: 0.5em;
     grid-column: span 2;
+    width: 100%;
 }
 
 .nextButton{
     margin: 0.5em;
     grid-column: span 1;
+    width: 20vw;
 }
 
 .prevButton{
     margin: 0.5em;
     align-content: right;
     grid-column: span 1;
+    width: 20vw;
 }
 
 @media screen and (max-width: 600px){
-    .gridcontainer{
-        grid-template-columns: 100%;
-    }
-    .runButton{
-        grid-column: span 1;
-    }
-    .inputBox{
-        grid-column: span 1;
-    }
     .image{
         margin-top: 20vh;
         grid-column: span 1;
