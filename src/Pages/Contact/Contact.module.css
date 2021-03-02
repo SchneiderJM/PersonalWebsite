@@ -9,40 +9,33 @@
     margin-top: 5vh;
 }
 .leftContainer{
-    display: flex;
-    flex-wrap: wrap;
-    display: flex;
+    display: grid;
     width: 50%
 }
 
 .rightContainer{
     display: flex;
     flex-wrap: wrap;
-    break-after: always;
     width: 50%
 }
 
 .Headline{
     margin: auto;
-    break-after: always;
 }
 
 #lastName{
-    break-after: always;
     margin: auto;
     margin-top: 10px;
     width: 50%;
 }
 
 #firstName{
-    break-after: always;
     margin: auto;
     margin-top: 10px;
     width: 50%;
 }
 
 #email{
-    break-after: always;
     margin: auto;
     margin-top: 10px;
     width: 50%
@@ -50,23 +43,19 @@
 
 .nameInputs{
     margin: auto;
-    break-after: always;
 }
 
 .submitButton{
     margin: auto;
     margin-top: 5vh;
-    break-after: always;
 }
 .messageText{
     margin: auto;
     margin-top: 10px;
-    break-after: always;
     width: 50%;
 }
 
 #mediaTitle{
-    break-after: always;
     margin: auto;
 }
 
@@ -80,7 +69,6 @@
 
 #warning{
     margin: auto;
-    break-after: always;
 }
 
 .mediaLinks img{
@@ -92,9 +80,16 @@
 @media screen and (max-width: 870px){
     .leftContainer{
         width: 100%;
-        break-after: always;
     }
     .rightContainer{
         width: 100%;
+    }
+    .Headline{
+        text-align: center;
+        margin-top: 15vh;
+    }
+    #mediaTitle{
+        text-align: center;
+        margin-top: 10vh;
     }
 }

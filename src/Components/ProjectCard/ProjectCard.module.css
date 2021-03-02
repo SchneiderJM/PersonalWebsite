@@ -1,0 +1,96 @@
+/*.leftCard{
+    background-color: #eeeeee;
+    margin-left: 2vw;
+    width: 20vw;
+}
+
+.rightCard{
+    background-color: #eeeeee;
+    margin-right: 2vw;
+    width: 20vw;
+}*/
+
+.rightCard{
+    background-color: #eeeeee;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    border-radius: 10px;
+    margin-right: 2vw;
+    width: 96vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30% 70%;
+}
+
+.rightCard img{
+    max-width: 45vw;
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+
+.rightCard h1{
+    margin: 2rem;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.rightCard p{
+    font-size: 1rem;
+    margin: 2rem;
+    color: black;
+}
+
+.leftCard{
+    background-color: #eeeeee;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-radius: 10px;
+    width: 96vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30% 70%;
+}
+
+.leftCard img{
+    max-width: 45vw;
+    margin-right: 2vw;
+    margin-top: 2vh;
+}
+
+.leftCard h1{
+    margin: 2rem;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.leftCard p{
+    font-size: 1rem;
+    margin: 2rem;
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+
+@media screen and (min-width: 800px){
+    .leftCard{
+        width: 45vw;
+        margin-right: 0;
+    }
+    .leftCard img{
+        max-width: 20vw;
+        margin-top: 1vh;
+    }
+    .rightCard img{
+        max-width: 20vw;
+        margin-top: 1vh;
+    }
+    .rightCard{
+        width: 45vw;
+        margin-left: 0;
+        margin-right: 4vw;
+    }
+}

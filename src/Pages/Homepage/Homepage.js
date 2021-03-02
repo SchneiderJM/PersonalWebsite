@@ -1,6 +1,10 @@
 import React from 'react';
 import classes from './Homepage.module.css';
 import homeimage from '../../Assets/pug_placeholder.jpg';
+import ProjectCard from '../../Components/ProjectCard/ProjectCard';
+import WordcloudLogo from '../../Assets/WordcloudLogo.png';
+import WSBLogo from '../../Assets/WSB_Logo.png';
+import RedditLogo from '../../Assets/Reddit_Logo.png';
 
 const Homepage = () => {
     return(
@@ -12,6 +16,37 @@ const Homepage = () => {
             <div className={classes.Description}><p>I am currently employed as a data scientist 
                 at Rattlehub Digital where I work on predictive insights models for financial advisors
                 as well as digital engagement for collection of estate data. </p> </div>
+            <div className={classes.projectCardContainer}><ProjectCard 
+                    keyValue={0} 
+                    Name='Twitter Wordcloud Generator' 
+                    Logo={WordcloudLogo} 
+                    Description='This is a small web app. 
+                    It takes a search term, checks Twitter for popular tweets containing that term, 
+                    and compiles a wordcloud showing which words are associated with the search term 
+                    in popular tweets.' 
+                    orientLeft={true}
+                    Link='/Twitter_Cloud'
+                />
+                <ProjectCard
+                    keyValue={0}
+                    Name='Subreddit Post Classifier'
+                    Logo={RedditLogo}
+                    Description='This takes a term to function as a potential title for a 
+                        Reddit post and uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
+                        such a post would best fit.'
+                    orientLeft={false}
+                    Link='/Reddit_Classifier'
+                />
+                <ProjectCard
+                    keyValue={0}
+                    Name='WSB Analytics'
+                    Logo={WSBLogo}
+                    Description='A bunch of analytics on the popular online forum r/WallStreetBets, an alleged culprit
+                    behind the 2021 GME run.'
+                    orientLeft={true}
+                    Link='/WSB_Analytics'
+                />
+            </div>
         </div>
     )
 }
