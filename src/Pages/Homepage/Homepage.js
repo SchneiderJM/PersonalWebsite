@@ -20,10 +20,10 @@ const Homepage = () => {
                     keyValue={0} 
                     Name='Twitter Wordcloud Generator' 
                     Logo={WordcloudLogo} 
-                    Description='This is a small web app. 
-                    It takes a search term, checks Twitter for popular tweets containing that term, 
-                    and compiles a wordcloud showing which words are associated with the search term 
-                    in popular tweets.' 
+                    Description='
+                    This takes a search term (a few words), checks Twitter for popular tweets containing those words,
+                    and compiles a wordcloud showing which words are associated with the search term
+                    in tweets that are currently popular.'
                     orientLeft={true}
                     Link='/Twitter_Cloud'
                 />
@@ -31,9 +31,9 @@ const Homepage = () => {
                     keyValue={0}
                     Name='Subreddit Post Classifier'
                     Logo={RedditLogo}
-                    Description='This takes a term to function as a potential title for a 
-                        Reddit post and uses a TF-IDF and XGBoost based machine learning model to determine on which Subreddit
-                        such a post would best fit.'
+                    Description='This takes a potential title for a
+                        Reddit post and uses a TF-IDF and XGBoost based machine learning model to determine which Subreddit
+                        that post would belong on.'
                     orientLeft={false}
                     Link='/Reddit_Classifier'
                 />
@@ -41,7 +41,7 @@ const Homepage = () => {
                     keyValue={0}
                     Name='WSB Analytics'
                     Logo={WSBLogo}
-                    Description='A bunch of analytics on the popular online forum r/WallStreetBets, an alleged culprit
+                    Description='A bunch of analytics on the popular online forum r/WallStreetBets, the alleged culprit
                     behind the 2021 GME run.'
                     orientLeft={true}
                     Link='/WSB_Analytics'
