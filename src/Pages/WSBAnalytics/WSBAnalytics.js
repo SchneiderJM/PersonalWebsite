@@ -11,6 +11,8 @@ const WSBAnalytics = () => {
     //Creates the chart when the state is updated
     useEffect(() => {
         console.log(graphData);
+        //disables linting for the next line because the warning is pretty meaningless
+        // eslint-disable-next-line
         const newChart = new Chart(chartRef.current,{
             type:'scatter',
             data:{

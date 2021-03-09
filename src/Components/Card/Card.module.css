@@ -1,0 +1,46 @@
+.Card{
+    background-color: #eeeeee;
+    margin-top: 5vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-radius: 10px;
+    width: 96vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Card img{
+    max-width: 45vw;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    grid-row: span 2;
+}
+
+.Card h1{
+    margin: 2vh;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.Card p{
+    margin: 2vh;
+    font-size: 1rem;
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+
+@media screen and (min-width: 800px){
+    .Card{
+        width: 45vw;
+        margin-right: 0;
+    }
+    .Card img{
+        max-width: 20vw;
+        margin-top: 1vh;
+    }
+}
