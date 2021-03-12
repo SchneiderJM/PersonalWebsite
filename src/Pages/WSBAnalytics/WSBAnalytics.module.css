@@ -21,6 +21,74 @@ tr:nth-child(odd){
 
 .chartContainer{
     background: #eeeeee;
-    width: 50%;
+    width: 100%;
+    margin-top: 10vh;
+    height: 60vh;
 
+}
+/*
+.flexcontainer{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 100vw;
+}*/
+
+.gridcontainer{
+    display: grid;
+    grid-template-columns: 100%;
+    width: 80%;
+    margin: auto;
+    justify-items: center;
+}
+
+.image{
+    grid-column: span 2;
+}
+
+.container{
+    margin: 20px;
+}
+
+
+.header{
+    margin: auto;
+    text-align: center;
+}
+
+.inputBox{
+    max-height: 30px;
+    margin: 0.5em;
+    grid-column: span 2;
+    width: 100%;
+}
+
+.runButton{
+    max-height: 50px;
+    margin: 0.5em;
+    grid-column: span 2;
+    width: 100%;
+}
+
+.nextButton{
+    margin: 0.5em;
+    grid-column: span 1;
+    width: 20vw;
+}
+
+.prevButton{
+    margin: 0.5em;
+    grid-column: span 1;
+    width: 20vw;
+}
+
+@media screen and (max-width: 600px){
+    .header{
+        margin-top: 10vh;
+    }
+    .gridcontainer{
+        width: 80%;
+        align-items: center;
+    }
 }
