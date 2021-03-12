@@ -1,9 +1,109 @@
-import React, {useState} from 'react';
+import React, {useState,useRef,useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
+import Chart from 'chart.js';
 import classes from './WSBAnalytics.module.css'
+import Spinner from '../../UI/Spinner/Spinner';
+
+function fetchGraphData(setGraphData,setDataLoaded){
+    axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=TopPosts')
+    .then(response => {
+        setGraphData(response['data'].map(item => [{'y':item[0],'x':item[1]}]).map(item => item[0]));
+    }).then(() => setDataLoaded(true));
+};
 
 const WSBAnalytics = () => {
+    //This sits in the useEffect hook and prevents it from running on the first render
+    const firstRun = useRef(true);
+    const chartRef = useRef(null);
+    const [graphData,setGraphData] = useState([{'x':'2010-01-01','y':1}]);
+    const [showDescription, setShowDescription] = useState(true);
+    const [dataLoaded, setDataLoaded] = useState(false);
+
+    //const chartCanvas = <canvas ref={chartRef} />
+    const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
+
+    useEffect (() => fetchGraphData(setGraphData,setDataLoaded),[]);
+
+    //Creates the chart when the state is updated
+    useEffect(() => {
+        if (dataLoaded && !showDescription){
+            //disables linting for the next line because the warning is pretty meaningless
+            // eslint-disable-next-line
+            const newChart = new Chart(chartRef.current,{
+                type:'scatter',
+                data:{
+                    datasets: [{
+                        label: 'Upvoted Posts',
+                        data: graphData
+                    }]
+                },
+                options:{
+                    title:{
+                        display: true,
+                        text: 'Top 1000 Posts, Upvotes and Date Posted'
+                    },
+                    legend:{
+                        display: false
+                    },
+                    scales:{
+                        xAxes:[{
+                            type: 'time',
+                            distribution: 'linear',
+                            scaleLabel:{
+                                display: true,
+                                labelString: 'Post Date'
+                            }
+                        }],
+                        yAxes:[{
+                            scaleLabel:{
+                                display: true,
+                                labelString: 'Upvotes'
+                            }
+                        }]
+                    },
+                    maintainAspectRatio: false
+                }
+            })
+        } else{
+            firstRun.current = false;
+        }
+    },[graphData,dataLoaded,showDescription])
+
+    
+
+
+    let page = <div>Internal Logic Error</div>;
+
+    if (showDescription){
+        page = <div className={classes.container}>
+                <h1 className={classes.header}>WallStreetBets Analytics</h1>
+                <p>Wallstreetbets is a section on the popular social media website, Reddit.</p>
+                <p>It rose to prominence in early 2021 when implicated in a huge jump in the stock price of Gamestop.</p>
+            </div>
+    }else{
+        page=
+            <div className={classes.chartContainer}>
+                {chartJSX}
+            </div>
+    }
+
+    return(
+        <>
+        <div className={classes.gridcontainer}>
+            {page}
+            <div>
+                <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
+                <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
+            </div>
+        </div>
+        </>
+    )
+}
+
+    //This all may be useful at some point in how to build a table using data pulled from a server
+    //but I'm commenting it out for now.
+    /*
     //Holds the ticker symbols and their counts
     const [tickerCounts, setTickerCounts] = useState({'testitem': {0:0,1:1}});
 
@@ -43,6 +143,6 @@ const WSBAnalytics = () => {
             <Button onClick={fetchTickersFromServer} style={{margin: 'auto'}} variant='dark'>Click for analytics</Button>
         </div>
     )
-}
+}*/
 
 export default WSBAnalytics;

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import classes from './NavigationBar.module.css';
 import HamburgerIcon from '../Assets/Hamburger_Menu.png';
 import Modal from '../UI/Modal/Modal';
+import Logo from '../Assets/Logo_800x800_Cropped.png';
 
 const NavigationBar = () => {
     const [showBar,setShowBar] = useState(false);
@@ -35,7 +36,7 @@ const NavigationBar = () => {
             onClick={() => setShowBar(!showBar)}/>}
         {showBar ? verticalBar : null}
         <Navbar bg='dark' variant='dark' className={classes.NavBar}>
-            <Navbar.Brand>Website</Navbar.Brand>
+            <Navbar.Brand><img src={Logo} alt='Where Logo' className={classes.cornerLogo} /></Navbar.Brand>
             <Nav className = 'mr-auto'>
                 <Nav.Link as={Link} to='/' >Homepage</Nav.Link>
                 <Nav.Link as={Link} to='/Twitter_Cloud'>Twitter Cloud</Nav.Link>
