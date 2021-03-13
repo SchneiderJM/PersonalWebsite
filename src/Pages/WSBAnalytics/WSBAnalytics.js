@@ -112,7 +112,7 @@ const WSBAnalytics = () => {
                     <tbody>
                         {items}
                     </tbody>
-                </table> : <Spinner />}
+                </table> : <><Spinner /> <p>Loading Table</p></>}
                 <div className={classes.chartContainer}>
                     {chartJSX}
                 </div>
