@@ -17,6 +17,8 @@ const WSBAnalytics = () => {
     const firstRun = useRef(true);
     const chartRef = useRef(null);
     const [graphData,setGraphData] = useState([{'x':'2010-01-01','y':1}]);
+    const [recentTableData,setRecentTableData] = useState({'tickers':[1,2,3]});
+    const [recentLoaded,setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -25,6 +27,12 @@ const WSBAnalytics = () => {
 
     useEffect (() => fetchGraphData(setGraphData,setDataLoaded),[]);
 
+    useEffect(()=> {
+        axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=RecentDataTable')
+        .then(response => setRecentTableData(response.data.tickers))
+        .then(() => setRecentLoaded(true));
+    },[])
+    useEffect(() => console.log(recentTableData))
     //Creates the chart when the state is updated
     useEffect(() => {
         if (dataLoaded && !showDescription){
@@ -70,7 +78,15 @@ const WSBAnalytics = () => {
         }
     },[graphData,dataLoaded,showDescription])
 
-    
+    const items = Object.keys(recentTableData).map((key) => {
+        return(
+            <tr key={key}>
+                <td>{recentTableData[key][0]}</td>
+                <td>{recentTableData[key][1]}</td>
+                <td>{recentTableData[key][2]}</td>
+            </tr>
+        )
+    });
 
 
     let page = <div>Internal Logic Error</div>;
@@ -83,9 +99,24 @@ const WSBAnalytics = () => {
             </div>
     }else{
         page=
-            <div className={classes.chartContainer}>
-                {chartJSX}
-            </div>
+            <>
+                {recentLoaded ? 
+                <table>
+                    <thead className={classes.outline}>
+                        <tr>
+                            <th>Ticker Symbol</th>
+                            <th>Stock Name</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {items}
+                    </tbody>
+                </table> : <Spinner />}
+                <div className={classes.chartContainer}>
+                    {chartJSX}
+                </div>
+            </>
     }
 
     return(
