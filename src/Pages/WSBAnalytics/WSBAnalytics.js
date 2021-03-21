@@ -1,70 +1,69 @@
-import React, {useState,useRef,useEffect} from 'react';
-import {Button} from 'react-bootstrap';
+import React, { useState, useRef, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Chart from 'chart.js';
 import classes from './WSBAnalytics.module.css'
 import Spinner from '../../UI/Spinner/Spinner';
 
-function fetchGraphData(setGraphData,setDataLoaded){
+function fetchGraphData(setGraphData, setDataLoaded) {
     axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=TopPosts')
-    .then(response => {
-        setGraphData(response['data'].map(item => [{'y':item[0],'x':item[1]}]).map(item => item[0]));
-    }).then(() => setDataLoaded(true));
+        .then(response => {
+            setGraphData(response['data'].map(item => [{ 'y': item[0], 'x': item[1] }]).map(item => item[0]));
+        }).then(() => setDataLoaded(true));
 };
 
 const WSBAnalytics = () => {
     //This sits in the useEffect hook and prevents it from running on the first render
     const firstRun = useRef(true);
     const chartRef = useRef(null);
-    const [graphData,setGraphData] = useState([{'x':'2010-01-01','y':1}]);
-    const [recentTableData,setRecentTableData] = useState({'tickers':[1,2,3]});
-    const [recentLoaded,setRecentLoaded] = useState(false);
+    const [graphData, setGraphData] = useState([{ 'x': '2010-01-01', 'y': 1 }]);
+    const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3] });
+    const [recentLoaded, setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
 
     //const chartCanvas = <canvas ref={chartRef} />
     const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
 
-    useEffect (() => fetchGraphData(setGraphData,setDataLoaded),[]);
+    useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
 
-    useEffect(()=> {
+    useEffect(() => {
         axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=RecentDataTable')
-        .then(response => setRecentTableData(response.data.tickers))
-        .then(() => setRecentLoaded(true));
-    },[])
-    useEffect(() => console.log(recentTableData))
+            .then(response => setRecentTableData(response.data.tickers))
+            .then(() => setRecentLoaded(true));
+    }, [])
     //Creates the chart when the state is updated
     useEffect(() => {
-        if (dataLoaded && !showDescription){
+        if (dataLoaded && !showDescription) {
             //disables linting for the next line because the warning is pretty meaningless
             // eslint-disable-next-line
-            const newChart = new Chart(chartRef.current,{
-                type:'scatter',
-                data:{
+            const newChart = new Chart(chartRef.current, {
+                type: 'scatter',
+                data: {
                     datasets: [{
                         label: 'Upvoted Posts',
                         data: graphData
                     }]
                 },
-                options:{
-                    title:{
+                options: {
+                    title: {
                         display: true,
                         text: 'Top 1000 Posts, Upvotes and Date Posted'
                     },
-                    legend:{
+                    legend: {
                         display: false
                     },
-                    scales:{
-                        xAxes:[{
+                    scales: {
+                        xAxes: [{
                             type: 'time',
                             distribution: 'linear',
-                            scaleLabel:{
+                            scaleLabel: {
                                 display: true,
                                 labelString: 'Post Date'
                             }
                         }],
-                        yAxes:[{
-                            scaleLabel:{
+                        yAxes: [{
+                            scaleLabel: {
                                 display: true,
                                 labelString: 'Upvotes'
                             }
@@ -73,13 +72,13 @@ const WSBAnalytics = () => {
                     maintainAspectRatio: false
                 }
             })
-        } else{
+        } else {
             firstRun.current = false;
         }
-    },[graphData,dataLoaded,showDescription])
+    }, [graphData, dataLoaded, showDescription])
 
     const items = Object.keys(recentTableData).map((key) => {
-        return(
+        return (
             <tr key={key}>
                 <td>{recentTableData[key][0]}</td>
                 <td>{recentTableData[key][1]}</td>
@@ -91,89 +90,114 @@ const WSBAnalytics = () => {
 
     let page = <div>Internal Logic Error</div>;
 
-    if (showDescription){
+    if (showDescription) {
         page = <div className={classes.container}>
-                <h1 className={classes.header}>WallStreetBets Analytics</h1>
-                <p>Wallstreetbets is a section on the popular social media website, Reddit.</p>
-                <p>It rose to prominence in early 2021 when implicated in a huge jump in the stock price of Gamestop.</p>
-            </div>
-    }else{
-        page=
+            <h1 className={classes.header}>WallStreetBets Analytics</h1>
+            <p>Wallstreetbets is a section on the popular social media website, Reddit.</p>
+            <p>It rose to prominence in early 2021 when implicated in a huge jump in the stock price of Gamestop.</p>
+        </div>
+    } else {
+        page =
             <>
-                {recentLoaded ? 
-                <table>
-                    <thead className={classes.outline}>
-                        <tr>
-                            <th>Ticker Symbol</th>
-                            <th>Stock Name</th>
-                            <th>Count</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items}
-                    </tbody>
-                </table> : <><Spinner /> <p>Loading Table</p></>}
+
+                {recentLoaded ?
+                    <div className={classes.tableContainer}>
+                        <table>
+                            <thead className={classes.outline}>
+                                <tr>
+                                    <th>Ticker Symbol</th>
+                                    <th>Stock Name</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {items}
+                            </tbody>
+                        </table>
+                        <div className={classes.tableParameters}>
+                            <div className={classes.titleInputPair}>
+                                <p className={classes.parameterTitle}>Date Range</p>
+                                <select name="DateRange" className={classes.parameterSelector}>
+                                    <option value='24h'>Last 24 Hours</option>
+                                    <option value='1w'>Last Week</option>
+                                <option value='1m'>Last Month</option>
+                            </select>
+                            </div>
+
+                            <div className={classes.titleInputPair}>
+                                <p className={classes.parameterTitle}>Max Tickers</p>
+                                <input type='text' placeholder='Number of Tickers' />
+                            </div>
+
+                            <div className={classes.titleInputPair}>
+                                <p></p>
+                                <Button variant='dark' className={classes.reloadButton}>Reload Table</Button>
+                            </div>
+                        </div>
+                    </div>
+
+                    : <><Spinner /> <p>Loading Table</p></>}
                 <div className={classes.chartContainer}>
                     {chartJSX}
                 </div>
             </>
     }
 
-    return(
+    return (
         <>
-        <div className={classes.gridcontainer}>
-            {page}
-            <div>
-                <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
-                <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
+            <div className={classes.gridcontainer}>
+                {page}
+                <div>
+                    <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
+                    <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
+                </div>
             </div>
-        </div>
         </>
     )
 }
 
-    //This all may be useful at some point in how to build a table using data pulled from a server
-    //but I'm commenting it out for now.
-    /*
-    //Holds the ticker symbols and their counts
-    const [tickerCounts, setTickerCounts] = useState({'testitem': {0:0,1:1}});
+//This all may be useful at some point in how to build a table using data pulled from a server
+//but I'm commenting it out for now.
+/*
+//Holds the ticker symbols and their counts
+const [tickerCounts, setTickerCounts] = useState({'testitem': {0:0,1:1}});
 
-    //Fetches ticker counts from the server
-    function fetchTickersFromServer(){
-        axios.get('https://wsbtickercounter-rawtnoo3mq-uc.a.run.app/')
-            .then(response => {
-                setTickerCounts(response['data']['tickers'])
-            })
-    }
+//Fetches ticker counts from the server
+function fetchTickersFromServer(){
+    axios.get('https://wsbtickercounter-rawtnoo3mq-uc.a.run.app/')
+        .then(response => {
+            setTickerCounts(response['data']['tickers'])
+        })
+}
 
-    //Maps the tickers and their counts into table rows
-    const items = Object.keys(tickerCounts).map((key) => {
-        return(
-            <tr key={key}>
-                <td>{tickerCounts[key][0]}</td>
-                <td>{tickerCounts[key][1]}</td>
-                <td>{tickerCounts[key][2]}</td>
-            </tr>
-        )
-    });
-
+//Maps the tickers and their counts into table rows
+const items = Object.keys(tickerCounts).map((key) => {
     return(
-        <div className={classes.centred}>
-            <table>
-                <thead className={classes.outline}>
-                    <tr>
-                        <th>Ticker Symbol</th>
-                        <th>Stock Name</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items}
-                </tbody>
-            </table>
-            <Button onClick={fetchTickersFromServer} style={{margin: 'auto'}} variant='dark'>Click for analytics</Button>
-        </div>
+        <tr key={key}>
+            <td>{tickerCounts[key][0]}</td>
+            <td>{tickerCounts[key][1]}</td>
+            <td>{tickerCounts[key][2]}</td>
+        </tr>
     )
+});
+
+return(
+    <div className={classes.centred}>
+        <table>
+            <thead className={classes.outline}>
+                <tr>
+                    <th>Ticker Symbol</th>
+                    <th>Stock Name</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {items}
+            </tbody>
+        </table>
+        <Button onClick={fetchTickersFromServer} style={{margin: 'auto'}} variant='dark'>Click for analytics</Button>
+    </div>
+)
 }*/
 
 export default WSBAnalytics;
