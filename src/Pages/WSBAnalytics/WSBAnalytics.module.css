@@ -53,14 +53,6 @@ tr:nth-child(odd){
     margin-top: 10vh;
     height: 60vh;
 }
-/*
-.flexcontainer{
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    max-width: 100vw;
-}*/
 
 .gridcontainer{
     display: grid;

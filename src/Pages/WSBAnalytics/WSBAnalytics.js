@@ -118,9 +118,9 @@ const WSBAnalytics = () => {
                             <div className={classes.titleInputPair}>
                                 <p className={classes.parameterTitle}>Date Range</p>
                                 <select name="DateRange" className={classes.parameterSelector}>
-                                    <option value='24h'>Last 24 Hours</option>
-                                    <option value='1w'>Last Week</option>
-                                <option value='1m'>Last Month</option>
+                                    <option value='24h'>24 Hours</option>
+                                    <option value='1w'>1 Week</option>
+                                    <option value='2w'>2 Weeks</option>
                             </select>
                             </div>
 
