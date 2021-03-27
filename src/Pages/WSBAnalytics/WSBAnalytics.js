@@ -156,48 +156,4 @@ const WSBAnalytics = () => {
     )
 }
 
-//This all may be useful at some point in how to build a table using data pulled from a server
-//but I'm commenting it out for now.
-/*
-//Holds the ticker symbols and their counts
-const [tickerCounts, setTickerCounts] = useState({'testitem': {0:0,1:1}});
-
-//Fetches ticker counts from the server
-function fetchTickersFromServer(){
-    axios.get('https://wsbtickercounter-rawtnoo3mq-uc.a.run.app/')
-        .then(response => {
-            setTickerCounts(response['data']['tickers'])
-        })
-}
-
-//Maps the tickers and their counts into table rows
-const items = Object.keys(tickerCounts).map((key) => {
-    return(
-        <tr key={key}>
-            <td>{tickerCounts[key][0]}</td>
-            <td>{tickerCounts[key][1]}</td>
-            <td>{tickerCounts[key][2]}</td>
-        </tr>
-    )
-});
-
-return(
-    <div className={classes.centred}>
-        <table>
-            <thead className={classes.outline}>
-                <tr>
-                    <th>Ticker Symbol</th>
-                    <th>Stock Name</th>
-                    <th>Count</th>
-                </tr>
-            </thead>
-            <tbody>
-                {items}
-            </tbody>
-        </table>
-        <Button onClick={fetchTickersFromServer} style={{margin: 'auto'}} variant='dark'>Click for analytics</Button>
-    </div>
-)
-}*/
-
 export default WSBAnalytics;
