@@ -21,17 +21,22 @@ const WSBAnalytics = () => {
     const [recentLoaded, setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
+    //The first one stages changes to the table, the second one executes it
+    //I couldn't really think of a better way to do this.
+    const [tmpTableDateRange, setTmpTableDateRange] = useState('RecentDataTable');
+    const [tableDateRange, setTableDateRange] = useState('RecentDataTable');
+    const [tableItems, setTableItems] = useState('');
 
-    //const chartCanvas = <canvas ref={chartRef} />
     const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
 
     useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
 
     useEffect(() => {
-        axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=RecentDataTable')
+        axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode='+tableDateRange)
             .then(response => setRecentTableData(response.data.tickers))
             .then(() => setRecentLoaded(true));
-    }, [])
+    }, [tableDateRange])
+
     //Creates the chart when the state is updated
     useEffect(() => {
         if (dataLoaded && !showDescription) {
@@ -76,16 +81,17 @@ const WSBAnalytics = () => {
             firstRun.current = false;
         }
     }, [graphData, dataLoaded, showDescription])
-
-    const items = Object.keys(recentTableData).map((key) => {
-        return (
-            <tr key={key}>
-                <td>{recentTableData[key][0]}</td>
-                <td>{recentTableData[key][1]}</td>
-                <td>{recentTableData[key][2]}</td>
-            </tr>
-        )
-    });
+    useEffect(() => {
+        setTableItems(Object.keys(recentTableData).map((key) => {
+            return (
+                <tr key={key}>
+                    <td>{recentTableData[key][0]}</td>
+                    <td>{recentTableData[key][1]}</td>
+                    <td>{recentTableData[key][2]}</td>
+                </tr>
+            )
+        }));
+    },[recentTableData]);
 
 
     let page = <div>Internal Logic Error</div>;
@@ -99,7 +105,6 @@ const WSBAnalytics = () => {
     } else {
         page =
             <>
-
                 {recentLoaded ?
                     <div className={classes.tableContainer}>
                         <table>
@@ -111,27 +116,27 @@ const WSBAnalytics = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {items}
+                                {tableItems}
                             </tbody>
                         </table>
                         <div className={classes.tableParameters}>
                             <div className={classes.titleInputPair}>
                                 <p className={classes.parameterTitle}>Date Range</p>
-                                <select name="DateRange" className={classes.parameterSelector}>
-                                    <option value='24h'>24 Hours</option>
-                                    <option value='1w'>1 Week</option>
-                                    <option value='2w'>2 Weeks</option>
-                            </select>
-                            </div>
-
-                            <div className={classes.titleInputPair}>
-                                <p className={classes.parameterTitle}>Max Tickers</p>
-                                <input type='text' placeholder='Number of Tickers' />
+                                <select onChange={(text) => setTmpTableDateRange(text.target.value)} 
+                                    name="DateRange" 
+                                    className={classes.parameterSelector}>
+                                    <option value='RecentDataTable'>24 Hours</option>
+                                    <option value='1WTable'>1 Week</option>
+                                </select>
                             </div>
 
                             <div className={classes.titleInputPair}>
                                 <p></p>
-                                <Button variant='dark' className={classes.reloadButton}>Reload Table</Button>
+                                <Button 
+                                variant='dark' 
+                                className={classes.reloadButton}
+                                onClick={() => setTableDateRange(tmpTableDateRange)}
+                                >Reload Table</Button>
                             </div>
                         </div>
                     </div>
