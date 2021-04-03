@@ -23,8 +23,8 @@ const WSBAnalytics = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
     //The first one stages changes to the table, the second one executes it
     //I couldn't really think of a better way to do this.
-    const [tmpTableDateRange, setTmpTableDateRange] = useState('RecentDataTable');
-    const [tableDateRange, setTableDateRange] = useState('RecentDataTable');
+    const [tmpTableDateRange, setTmpTableDateRange] = useState('GenTable24');
+    const [tableDateRange, setTableDateRange] = useState('GenTable24');
     const [tableItems, setTableItems] = useState('');
 
     const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
@@ -32,10 +32,11 @@ const WSBAnalytics = () => {
     useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
 
     useEffect(() => {
+        setRecentLoaded(false);
         axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode='+tableDateRange)
             .then(response => setRecentTableData(response.data.tickers))
             .then(() => setRecentLoaded(true));
-    }, [tableDateRange])
+    }, [tableDateRange]);
 
     //Creates the chart when the state is updated
     useEffect(() => {
@@ -125,8 +126,11 @@ const WSBAnalytics = () => {
                                 <select onChange={(text) => setTmpTableDateRange(text.target.value)} 
                                     name="DateRange" 
                                     className={classes.parameterSelector}>
-                                    <option value='RecentDataTable'>24 Hours</option>
-                                    <option value='1WTable'>1 Week</option>
+                                    <option value='GenTable24'>1 Day</option>
+                                    <option value='GenTable48'>2 Days</option>
+                                    <option value='GenTable72'>3 Days</option>
+                                    <option value='GenTable96'>4 Days</option>
+                                    <option value='GenTable120'>5 Days</option>
                                 </select>
                             </div>
 
