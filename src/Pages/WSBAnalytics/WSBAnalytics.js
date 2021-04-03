@@ -113,7 +113,7 @@ const WSBAnalytics = () => {
                                 <tr>
                                     <th>Ticker Symbol</th>
                                     <th>Stock Name</th>
-                                    <th>Count</th>
+                                    <th>Mentions</th>
                                 </tr>
                             </thead>
                             <tbody>
