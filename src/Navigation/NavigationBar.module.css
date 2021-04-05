@@ -16,6 +16,7 @@ button{
     height: 8vh;
     font-size: 1rem;
     top: 0;
+    z-index: 4;
 }
 
 .VertNavBar{
