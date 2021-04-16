@@ -4,6 +4,7 @@ import axios from 'axios';
 import Chart from 'chart.js';
 import classes from './WSBAnalytics.module.css'
 import Spinner from '../../UI/Spinner/Spinner';
+import {DataSet, Network} from 'vis';
 
 function fetchGraphData(setGraphData, setDataLoaded) {
     axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=TopPosts')
@@ -13,9 +14,32 @@ function fetchGraphData(setGraphData, setDataLoaded) {
 };
 
 const WSBAnalytics = () => {
+    //Network Test
+    const nodes = new DataSet([
+        { id: 1, label: 'Node 1' },
+        { id: 2, label: 'Node 2' },
+        { id: 3, label: 'Node 3' },
+        { id: 4, label: 'Node 4' },
+        { id: 5, label: 'Node 5' }
+      ]);
+      
+      // create an array with edges
+      const edges = new DataSet([
+        { from: 1, to: 3 },
+        { from: 1, to: 2 },
+        { from: 2, to: 4 },
+        { from: 2, to: 5 }
+      ]);
+      
+      const networkData = {
+        nodes: nodes,
+        edges: edges
+      };
+      const options = {};
     //This sits in the useEffect hook and prevents it from running on the first render
     const firstRun = useRef(true);
     const chartRef = useRef(null);
+    const networkRef = useRef();
     const [graphData, setGraphData] = useState([{ 'x': '2010-01-01', 'y': 1 }]);
     const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3] });
     const [recentLoaded, setRecentLoaded] = useState(false);
@@ -146,16 +170,30 @@ const WSBAnalytics = () => {
                     </div>
 
                     : <><Spinner /> <p>Loading Table</p></>}
+                
                 <div className={classes.chartContainer}>
                     {chartJSX}
                 </div>
             </>
     }
 
+
+
+
+
+
+
+      useEffect(()=>{
+          console.log('rendered network')
+        const network = new Network(networkRef.current,networkData,options)
+      },[networkData,options])
+
+
     return (
         <>
             <div className={classes.gridcontainer}>
                 {page}
+                <div className={showDescription ? classes.networkContainerNull : classes.networkContainer} ref={networkRef}></div>
                 <div>
                     <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
                     <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>

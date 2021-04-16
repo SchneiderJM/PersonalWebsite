@@ -7,12 +7,21 @@ table{
     width: 100%;
 }
 
+.networkContainer{
+    height: 500px;  
+}
 
 .tableContainer{
     width: 100%;
     margin-top: 10vh;
     padding-bottom: 5vh;
     background-color: white;    
+}
+
+/*Handles the case where the network container needs to be hidden*/
+.networkContainerNull{
+    height: 500px;
+    display: none;
 }
 
 .tableParameters{
