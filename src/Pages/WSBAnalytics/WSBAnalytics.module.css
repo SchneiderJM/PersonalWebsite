@@ -8,7 +8,8 @@ table{
 }
 
 .networkContainer{
-    height: 500px;  
+    height: 80vh;
+    width: 79vw;  
 }
 
 .tableContainer{
@@ -20,8 +21,9 @@ table{
 
 /*Handles the case where the network container needs to be hidden*/
 .networkContainerNull{
-    height: 500px;
-    display: none;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
 }
 
 .tableParameters{

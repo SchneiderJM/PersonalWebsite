@@ -14,28 +14,7 @@ function fetchGraphData(setGraphData, setDataLoaded) {
 };
 
 const WSBAnalytics = () => {
-    //Network Test
-    const nodes = new DataSet([
-        { id: 1, label: 'Node 1' },
-        { id: 2, label: 'Node 2' },
-        { id: 3, label: 'Node 3' },
-        { id: 4, label: 'Node 4' },
-        { id: 5, label: 'Node 5' }
-      ]);
-      
-      // create an array with edges
-      const edges = new DataSet([
-        { from: 1, to: 3 },
-        { from: 1, to: 2 },
-        { from: 2, to: 4 },
-        { from: 2, to: 5 }
-      ]);
-      
-      const networkData = {
-        nodes: nodes,
-        edges: edges
-      };
-      const options = {};
+    
     //This sits in the useEffect hook and prevents it from running on the first render
     const firstRun = useRef(true);
     const chartRef = useRef(null);
@@ -51,9 +30,48 @@ const WSBAnalytics = () => {
     const [tableDateRange, setTableDateRange] = useState('GenTable24');
     const [tableItems, setTableItems] = useState('');
 
-    const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
+    //Sets up a state for the network
+    const [networkData, setNetworkData] = useState(() => {
+        //Sample edges
+        const nodes = new DataSet([
+            { id: 1, label: 'Node 1' },
+            { id: 2, label: 'Node 2' },
+            { id: 3, label: 'Node 3' },
+            { id: 4, label: 'Node 4' },
+            { id: 5, label: 'Node 5' }
+        ]);
+        
+        // create an array with edges
+        const edges = new DataSet([
+            { from: 1, to: 3 },
+            { from: 1, to: 2 },
+            { from: 2, to: 4 },
+            { from: 2, to: 5 }
+        ]);
+        
+        const networkData = {
+            nodes: nodes,
+            edges: edges
+        };
+        const options = {};
+        return({data:networkData,options:options})
+    });
 
+    const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
+    //Fetches data for the graph
     useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
+    
+    //Fetches data for the network diagram
+    useEffect(() => {
+        axios.get('https://storage.googleapis.com/networkdata/vistest.json')
+            .then(response => {
+                const loadedNodes = new DataSet(response['data']['nodes']);
+                const loadedEdges = new DataSet(response['data']['edges']);
+                console.log('response')
+                setNetworkData({
+                    data:{nodes: loadedNodes, edges: loadedEdges},
+                    options:{physics:false}})});
+    },[]);
 
     useEffect(() => {
         setRecentLoaded(false);
@@ -179,15 +197,13 @@ const WSBAnalytics = () => {
 
 
 
-
-
-
-
+      /* eslint-disable no-unused-vars */
       useEffect(()=>{
-          console.log('rendered network')
-        const network = new Network(networkRef.current,networkData,options)
-      },[networkData,options])
-
+          console.log('useEffect')
+          const network = new Network(networkRef.current,networkData['data'],networkData['options']);
+          network.moveTo({scale:0.3});
+      },[networkData])
+      /* eslint-enable no-unused-vars */
 
     return (
         <>
