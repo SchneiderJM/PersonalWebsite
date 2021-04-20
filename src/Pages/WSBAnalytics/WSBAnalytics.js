@@ -63,14 +63,14 @@ const WSBAnalytics = () => {
     
     //Fetches data for the network diagram
     useEffect(() => {
-        axios.get('https://storage.googleapis.com/networkdata/vistest.json')
+        axios.get('https://storage.googleapis.com/networkdata/network_data.json')
             .then(response => {
                 const loadedNodes = new DataSet(response['data']['nodes']);
                 const loadedEdges = new DataSet(response['data']['edges']);
                 console.log('response')
                 setNetworkData({
                     data:{nodes: loadedNodes, edges: loadedEdges},
-                    options:{physics:false}})});
+                    options:{physics:false,interaction:{zoomView:false}}})});
     },[]);
 
     useEffect(() => {
