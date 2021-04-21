@@ -7,6 +7,21 @@ table{
     width: 100%;
 }
 
+/*Builds a card around the network*/
+.networkCard{
+    margin-top: 3vh;
+    background: #eeeeee;
+    text-align: center;
+}
+
+.networkHeader{
+    margin: 1rem;
+}
+
+.networkDescription{
+    margin: 1rem;
+}
+
 .networkContainer{
     height: 80vh;
     width: 79vw;  
@@ -16,7 +31,7 @@ table{
     width: 100%;
     margin-top: 10vh;
     padding-bottom: 5vh;
-    background-color: white;    
+    background-color: #eeeeee;    
 }
 
 /*Handles the case where the network container needs to be hidden*/

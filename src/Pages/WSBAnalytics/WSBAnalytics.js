@@ -67,7 +67,6 @@ const WSBAnalytics = () => {
             .then(response => {
                 const loadedNodes = new DataSet(response['data']['nodes']);
                 const loadedEdges = new DataSet(response['data']['edges']);
-                console.log('response')
                 setNetworkData({
                     data:{nodes: loadedNodes, edges: loadedEdges},
                     options:{physics:false,interaction:{zoomView:false}}})});
@@ -199,7 +198,6 @@ const WSBAnalytics = () => {
 
       /* eslint-disable no-unused-vars */
       useEffect(()=>{
-          console.log('useEffect')
           const network = new Network(networkRef.current,networkData['data'],networkData['options']);
           network.moveTo({scale:0.3});
       },[networkData])
@@ -209,7 +207,14 @@ const WSBAnalytics = () => {
         <>
             <div className={classes.gridcontainer}>
                 {page}
-                <div className={showDescription ? classes.networkContainerNull : classes.networkContainer} ref={networkRef}></div>
+                <div className={classes.networkCard}>
+                    {showDescription ? null : <h1 className={classes.networkHeader}>Stock Associations</h1>}
+                    {showDescription ? null : <p className={classes.networkDescription}>
+                        This network visualizes which stocks are mentioned together more often. 
+                        Thicker lines indicate more co-occurences within the same post, title, or comment.
+                        The network is interactive, it can be moved around within its container and each node can be moved individually as well.</p>}
+                    <div className={showDescription ? classes.networkContainerNull : classes.networkContainer} ref={networkRef}></div>
+                </div>
                 <div>
                     <Button className={classes.prevButton} variant='dark' onClick={() => setShowDescription(true)}>Prev</Button>
                     <Button className={classes.nextButton} variant='dark' onClick={() => setShowDescription(false)}>Next</Button>
