@@ -7,7 +7,7 @@ import Spinner from '../../UI/Spinner/Spinner';
 import {DataSet, Network} from 'vis';
 
 function fetchGraphData(setGraphData, setDataLoaded) {
-    axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode=TopPosts')
+    axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/top_posts.json')
         .then(response => {
             setGraphData(response['data'].map(item => [{ 'y': item[0], 'x': item[1] }]).map(item => item[0]));
         }).then(() => setDataLoaded(true));
@@ -26,8 +26,8 @@ const WSBAnalytics = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
     //The first one stages changes to the table, the second one executes it
     //I couldn't really think of a better way to do this.
-    const [tmpTableDateRange, setTmpTableDateRange] = useState('GenTable24');
-    const [tableDateRange, setTableDateRange] = useState('GenTable24');
+    const [tmpTableDateRange, setTmpTableDateRange] = useState('24');
+    const [tableDateRange, setTableDateRange] = useState('24');
     const [tableItems, setTableItems] = useState('');
 
     //Sets up a state for the network
@@ -74,7 +74,7 @@ const WSBAnalytics = () => {
 
     useEffect(() => {
         setRecentLoaded(false);
-        axios.get('https://datafetcher-ktoivrtfoa-uc.a.run.app/?queryCode='+tableDateRange)
+        axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/'+tableDateRange+'hourstable.json')
             .then(response => setRecentTableData(response.data.tickers))
             .then(() => setRecentLoaded(true));
     }, [tableDateRange]);
@@ -130,6 +130,7 @@ const WSBAnalytics = () => {
                     <td>{recentTableData[key][0]}</td>
                     <td>{recentTableData[key][1]}</td>
                     <td>{recentTableData[key][2]}</td>
+                    <td>{recentTableData[key][3].toFixed(4)}</td>
                 </tr>
             )
         }));
@@ -155,6 +156,7 @@ const WSBAnalytics = () => {
                                     <th>Ticker Symbol</th>
                                     <th>Stock Name</th>
                                     <th>Mentions</th>
+                                    <th>Sentiment</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -167,11 +169,11 @@ const WSBAnalytics = () => {
                                 <select onChange={(text) => setTmpTableDateRange(text.target.value)} 
                                     name="DateRange" 
                                     className={classes.parameterSelector}>
-                                    <option value='GenTable24'>1 Day</option>
-                                    <option value='GenTable48'>2 Days</option>
-                                    <option value='GenTable72'>3 Days</option>
-                                    <option value='GenTable96'>4 Days</option>
-                                    <option value='GenTable120'>5 Days</option>
+                                    <option value='24'>1 Day</option>
+                                    <option value='48'>2 Days</option>
+                                    <option value='72'>3 Days</option>
+                                    <option value='96'>4 Days</option>
+                                    <option value='120'>5 Days</option>
                                 </select>
                             </div>
 
