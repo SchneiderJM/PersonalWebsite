@@ -20,7 +20,7 @@ const WSBAnalytics = () => {
     const chartRef = useRef(null);
     const networkRef = useRef();
     const [graphData, setGraphData] = useState([{ 'x': '2010-01-01', 'y': 1 }]);
-    const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3] });
+    const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3,4] });
     const [recentLoaded, setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -167,6 +167,7 @@ const WSBAnalytics = () => {
                             <div className={classes.titleInputPair}>
                                 <p className={classes.parameterTitle}>Date Range</p>
                                 <select onChange={(text) => setTmpTableDateRange(text.target.value)} 
+                                    value={tmpTableDateRange}
                                     name="DateRange" 
                                     className={classes.parameterSelector}>
                                     <option value='24'>1 Day</option>
@@ -182,7 +183,7 @@ const WSBAnalytics = () => {
                                 <Button 
                                 variant='dark' 
                                 className={classes.reloadButton}
-                                onClick={() => setTableDateRange(tmpTableDateRange)}
+                                onClick={() => {setTableDateRange(tmpTableDateRange)}}
                                 >Reload Table</Button>
                             </div>
                         </div>
