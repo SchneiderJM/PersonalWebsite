@@ -1,12 +1,12 @@
 .rightCard{
     background-color: #eeeeee;
-    margin-top: 5vh;
     margin-left: 2vw;
     border-radius: 10px;
     margin-right: 2vw;
     width: 96vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-bottom: 5vh;
 }
 
 .rightCard img{
@@ -29,13 +29,13 @@
 
 .leftCard{
     background-color: #eeeeee;
-    margin-top: 5vh;
     margin-left: 2vw;
     margin-right: 2vw;
     border-radius: 10px;
     width: 96vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin-bottom: 5vh;
 }
 
 .rightGrid p{
