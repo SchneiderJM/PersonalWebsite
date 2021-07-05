@@ -13,22 +13,52 @@ function fetchGraphData(setGraphData, setDataLoaded) {
         }).then(() => setDataLoaded(true));
 };
 
+function fetchForecastResponse(setForecastResponse, setForecastResponseLoaded,setForecastGraphData,setTopTickers){
+    axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/ticker_graph_data.json')
+        .then(response => {
+            setForecastResponse(response);
+            setTopTickers(Object.keys(response['data']));
+            setForecastGraphData({
+                'historical': response['data']['bb']['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
+                'prediction': response['data']['bb']['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])})
+        }).then(() => setForecastResponseLoaded(true));
+}
+
+function setNewForecast(forecastResponse, setForecastGraphData, ticker){
+    console.log(ticker);
+    setForecastGraphData({
+        'historical': forecastResponse['data'][ticker]['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
+        'prediction': forecastResponse['data'][ticker]['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])
+    });
+}
+
 const WSBAnalytics = () => {
     
     //This sits in the useEffect hook and prevents it from running on the first render
     const firstRun = useRef(true);
     const chartRef = useRef(null);
+    const forecastChartRef = useRef(null);
     const networkRef = useRef();
     const [graphData, setGraphData] = useState([{ 'x': '2010-01-01', 'y': 1 }]);
+    //Holds the entire response  containing the forecasts
+    const [forecastResponse, setForecastResponse] = useState([{'x':'2010-01-01','y':1}]);
+    //Holds the data currently displayed on the forecast graph
+    const [forecastGraphData, setForecastGraphData] = useState([{'x':'2010-01-01','y':1}]);
     const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3,4] });
     const [recentLoaded, setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [forecastResponseLoaded, setForecastResponseLoaded] = useState(false);
+    const [topTickers, setTopTickers] = useState(['sample1','sample2']);
+    const [selectedTicker, setSelectedTicker] = useState('sample1');
+    //This determines whether the forecast chart needs to be updated or created
+    const [forecastChartExists, setForecastChartExists] = useState(false);
     //The first one stages changes to the table, the second one executes it
     //I couldn't really think of a better way to do this.
     const [tmpTableDateRange, setTmpTableDateRange] = useState('24');
     const [tableDateRange, setTableDateRange] = useState('24');
     const [tableItems, setTableItems] = useState('');
+
 
     //Sets up a state for the network
     const [networkData, setNetworkData] = useState(() => {
@@ -57,9 +87,49 @@ const WSBAnalytics = () => {
         return({data:networkData,options:options})
     });
 
-    const chartJSX = dataLoaded ? <canvas ref={chartRef} /> : <Spinner />;
+
+    const chartJSX = dataLoaded ? 
+    <div className={classes.chartContainer}>
+        <canvas ref={chartRef} /> 
+    </div>      
+    : 
+    <div className={classes.chartContainer}>
+        <Spinner />
+    </div>
+
+    const forecastChartJSX = forecastResponseLoaded ? 
+    <div className={classes.tableContainer}>
+        <div className={classes.chartWithParametersContainer}>
+            <canvas ref={forecastChartRef} id='forecastChart' /> 
+        </div>
+        <div className={classes.tableParameters}>
+            <div className={classes.titleInputPair}>
+                <p className={classes.parameterTitle}>Stock Ticker</p>
+                <select className={classes.parameterSelector}
+                        onChange={(text) => setSelectedTicker(text.target.value)}>
+                    {topTickers.map((ticker) => <option value={ticker} key={ticker} >{ticker.toUpperCase()}</option>)}
+                </select>
+            </div>
+
+            <div className={classes.titleInputPair}>
+                <p></p>
+                <Button 
+                variant='dark' 
+                className={classes.reloadButton}
+                onClick={() => {setNewForecast(forecastResponse, setForecastGraphData, selectedTicker)}}
+                >Reload Chart</Button>
+            </div>
+        </div>
+    </div>
+    
+    : 
+    <div className={classes.chartContainer}>
+        <Spinner />
+    </div>
+
     //Fetches data for the graph
     useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
+    useEffect(() => fetchForecastResponse(setForecastResponse, setForecastResponseLoaded, setForecastGraphData, setTopTickers), []);
     
     //Fetches data for the network diagram
     useEffect(() => {
@@ -84,7 +154,7 @@ const WSBAnalytics = () => {
         if (dataLoaded && !showDescription) {
             //disables linting for the next line because the warning is pretty meaningless
             // eslint-disable-next-line
-            const newChart = new Chart(chartRef.current, {
+            const topPostsChart = new Chart(chartRef.current, {
                 type: 'scatter',
                 data: {
                     datasets: [{
@@ -123,6 +193,76 @@ const WSBAnalytics = () => {
             firstRun.current = false;
         }
     }, [graphData, dataLoaded, showDescription])
+
+    //Creates the forecast chart when the state is updated
+    useEffect(() => {
+        if (forecastResponseLoaded && !showDescription && !forecastChartExists) {
+            setForecastChartExists(true);
+            //disables linting for the next line because the warning is pretty meaningless
+            // eslint-disable-next-line
+            const historicalMentionsChart = new Chart(forecastChartRef.current, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Historical Mentions',
+                        data: forecastGraphData['historical']
+                    },
+                    {
+                        label: 'Predicted Mentions',
+                        data: forecastGraphData['prediction']
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Stock Mentions over the Last Month with ARIMA Forecast'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            distribution: 'linear',
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Mentions'
+                            }
+                        }]
+                    },
+                    maintainAspectRatio: false
+                }
+            })
+            //Handles the case where the forecast chart already exists and updates it
+        } else if (forecastChartExists){
+            console.log('update case')
+            //Loops over all of the charts looking for the forecast chart
+            Chart.helpers.each(Chart.instances, (instance) => {
+                if (instance.chart.canvas.id === 'forecastChart'){
+                    instance.data.datasets = [{
+                        label: 'Historical Mentions',
+                        data: forecastGraphData['historical']
+                    },
+                    {
+                        label: 'Predicted Mentions',
+                        data: forecastGraphData['prediction']
+                    }
+                    ]
+                    instance.update()
+                }
+            })
+        } else {
+            firstRun.current = false;
+        }
+    }, [forecastGraphData, forecastResponseLoaded, forecastChartExists, showDescription])
+
     useEffect(() => {
         setTableItems(Object.keys(recentTableData).map((key) => {
             return (
@@ -191,9 +331,10 @@ const WSBAnalytics = () => {
 
                     : <><Spinner /> <p>Loading Table</p></>}
                 
-                <div className={classes.chartContainer}>
-                    {chartJSX}
-                </div>
+                {forecastChartJSX}
+
+                {chartJSX}
+
             </>
     }
 
