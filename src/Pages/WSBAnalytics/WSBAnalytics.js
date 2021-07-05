@@ -89,16 +89,16 @@ const WSBAnalytics = () => {
 
 
     const chartJSX = dataLoaded ? 
-    <div className={classes.chartContainer}>
+    <div className={classes.chartContainer} key='chart'>
         <canvas ref={chartRef} /> 
     </div>      
     : 
     <div className={classes.chartContainer}>
-        <Spinner />
+        <Spinner key='chartspinner' />
     </div>
 
     const forecastChartJSX = forecastResponseLoaded ? 
-    <div className={classes.chartContainer}>
+    <div className={classes.chartContainer} key='forecastchart'>
         <div className={classes.chartWithParametersContainer}>
             <canvas ref={forecastChartRef} id='forecastChart' /> 
         </div>
@@ -124,7 +124,7 @@ const WSBAnalytics = () => {
     
     : 
     <div className={classes.chartContainer}>
-        <Spinner />
+        <Spinner key='forecastchartspinner' />
     </div>
 
     //Fetches data for the graph
@@ -288,7 +288,7 @@ const WSBAnalytics = () => {
         page =
             [
                 recentLoaded ?
-                    <div className={classes.tableContainer}>
+                    <div className={classes.tableContainer} key='table'>
                         <table>
                             <thead className={classes.outline}>
                                 <tr>
