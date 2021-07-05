@@ -204,10 +204,12 @@ const WSBAnalytics = () => {
                 type: 'line',
                 data: {
                     datasets: [{
+                        borderColor: '#6699cc',
                         label: 'Historical Mentions',
                         data: forecastGraphData['historical']
                     },
                     {
+                        borderColor: '#cccc99',
                         label: 'Predicted Mentions',
                         data: forecastGraphData['prediction']
                     }
@@ -219,7 +221,7 @@ const WSBAnalytics = () => {
                         text: 'Stock Mentions over the Last Month with ARIMA Forecast'
                     },
                     legend: {
-                        display: false
+                        display: true
                     },
                     scales: {
                         xAxes: [{
@@ -246,10 +248,12 @@ const WSBAnalytics = () => {
             Chart.helpers.each(Chart.instances, (instance) => {
                 if (instance.chart.canvas.id === 'forecastChart'){
                     instance.data.datasets = [{
+                        borderColor: '#6699cc',
                         label: 'Historical Mentions',
                         data: forecastGraphData['historical']
                     },
                     {
+                        borderColor: '#cccc99',
                         label: 'Predicted Mentions',
                         data: forecastGraphData['prediction']
                     }
