@@ -29,8 +29,7 @@ table{
 
 .tableContainer{
     width: 100%;
-    height: 80vh;
-    margin-top: 10vh;
+    margin-top: 5vh;
     margin-bottom: 5vh;
     background-color: #eeeeee;    
 }
@@ -76,10 +75,11 @@ tr:nth-child(odd){
 }
 
 .chartContainer{
-    background: #eeeeee;
     width: 100%;
-    margin-top: 10vh;
-    height: 60vh;
+    height: 80vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background-color: #eeeeee; 
 }
 
 .chartWithParametersContainer{
@@ -135,7 +135,7 @@ tr:nth-child(odd){
         margin-top: 10vh;
     }
     .gridcontainer{
-        width: 80%;
+        width: 100%;
         align-items: center;
     }
 }

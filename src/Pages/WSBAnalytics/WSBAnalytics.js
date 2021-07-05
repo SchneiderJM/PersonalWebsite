@@ -98,7 +98,7 @@ const WSBAnalytics = () => {
     </div>
 
     const forecastChartJSX = forecastResponseLoaded ? 
-    <div className={classes.tableContainer}>
+    <div className={classes.chartContainer}>
         <div className={classes.chartWithParametersContainer}>
             <canvas ref={forecastChartRef} id='forecastChart' /> 
         </div>
@@ -242,7 +242,6 @@ const WSBAnalytics = () => {
             })
             //Handles the case where the forecast chart already exists and updates it
         } else if (forecastChartExists){
-            console.log('update case')
             //Loops over all of the charts looking for the forecast chart
             Chart.helpers.each(Chart.instances, (instance) => {
                 if (instance.chart.canvas.id === 'forecastChart'){
@@ -287,8 +286,8 @@ const WSBAnalytics = () => {
         </div>
     } else {
         page =
-            <>
-                {recentLoaded ?
+            [
+                recentLoaded ?
                     <div className={classes.tableContainer}>
                         <table>
                             <thead className={classes.outline}>
@@ -329,13 +328,13 @@ const WSBAnalytics = () => {
                         </div>
                     </div>
 
-                    : <><Spinner /> <p>Loading Table</p></>}
+                    : <><Spinner /> <p>Loading Table</p></>,
                 
-                {forecastChartJSX}
+                forecastChartJSX,
 
-                {chartJSX}
+                chartJSX
 
-            </>
+            ]
     }
 
 
