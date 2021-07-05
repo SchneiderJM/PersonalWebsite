@@ -13,19 +13,19 @@ function fetchGraphData(setGraphData, setDataLoaded) {
         }).then(() => setDataLoaded(true));
 };
 
-function fetchForecastResponse(setForecastResponse, setForecastResponseLoaded,setForecastGraphData,setTopTickers){
+function fetchForecastResponse(setForecastResponse, setForecastResponseLoaded,setForecastGraphData,setTopTickers,setSelectedTicker){
     axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/ticker_graph_data.json')
         .then(response => {
             setForecastResponse(response);
             setTopTickers(Object.keys(response['data']));
+            setSelectedTicker(Object.keys(response['data'])[0]);
             setForecastGraphData({
-                'historical': response['data']['bb']['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
-                'prediction': response['data']['bb']['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])})
+                'historical': response['data'][Object.keys(response['data'])[0]]['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
+                'prediction': response['data'][Object.keys(response['data'])[0]]['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])})
         }).then(() => setForecastResponseLoaded(true));
 }
 
 function setNewForecast(forecastResponse, setForecastGraphData, ticker){
-    console.log(ticker);
     setForecastGraphData({
         'historical': forecastResponse['data'][ticker]['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
         'prediction': forecastResponse['data'][ticker]['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])
@@ -44,7 +44,7 @@ const WSBAnalytics = () => {
     const [forecastResponse, setForecastResponse] = useState([{'x':'2010-01-01','y':1}]);
     //Holds the data currently displayed on the forecast graph
     const [forecastGraphData, setForecastGraphData] = useState([{'x':'2010-01-01','y':1}]);
-    const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3,4] });
+    const [recentTableData, setRecentTableData] = useState({ 'tickers': [1, 2, 3, 4] });
     const [recentLoaded, setRecentLoaded] = useState(false);
     const [showDescription, setShowDescription] = useState(true);
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -129,7 +129,7 @@ const WSBAnalytics = () => {
 
     //Fetches data for the graph
     useEffect(() => fetchGraphData(setGraphData, setDataLoaded), []);
-    useEffect(() => fetchForecastResponse(setForecastResponse, setForecastResponseLoaded, setForecastGraphData, setTopTickers), []);
+    useEffect(() => fetchForecastResponse(setForecastResponse, setForecastResponseLoaded, setForecastGraphData, setTopTickers,setSelectedTicker), []);
     
     //Fetches data for the network diagram
     useEffect(() => {
