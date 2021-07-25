@@ -218,7 +218,7 @@ const WSBAnalytics = () => {
                 options: {
                     title: {
                         display: true,
-                        text: 'Stock Mentions over the Last Month with ARIMA Forecast'
+                        text: 'Stock Mentions over the Last Month with SARIMAX Forecast'
                     },
                     legend: {
                         display: true
