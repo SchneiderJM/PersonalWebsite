@@ -14,8 +14,7 @@ const Homepage = () => {
             </div>
             <img className={classes.Photo} src={homeimage} alt={'Failed to load'}/>
             <div className={classes.Description}><p>I am currently employed as a data scientist 
-                at Rattlehub Digital where I work on predictive insights models for financial advisors
-                as well as digital engagement for collection of estate data. </p> </div>
+                at Pitstop where I work on predictive analytics for vehicle maintenance. </p> </div>
             <div className={classes.projectCardContainer}><ProjectCard 
                     keyValue={0} 
                     Name='Twitter Wordcloud Generator' 
