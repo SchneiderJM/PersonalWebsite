@@ -27,6 +27,7 @@
     margin-top: 5vh;
     margin-left: 2vw;
     margin-right: 2vw;
+    margin-bottom: 5vh;
 }
 
 .projectCardContainer{
@@ -46,6 +47,7 @@
     .Description{
         max-width: 45vw;
         padding: 5vw;
+        margin: auto;
         margin-top: 0;
     }
 }
