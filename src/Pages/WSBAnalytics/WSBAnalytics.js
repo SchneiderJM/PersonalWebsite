@@ -10,7 +10,10 @@ function fetchGraphData(setGraphData, setDataLoaded) {
     axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/top_posts.json')
         .then(response => {
             setGraphData(response['data'].map(item => [{ 'y': item[0], 'x': item[1] }]).map(item => item[0]));
-        }).then(() => setDataLoaded(true));
+        }).then(() => setDataLoaded(true))
+        .catch(error => {
+            console.log(error)
+        });
 };
 
 function fetchForecastResponse(setForecastResponse, setForecastResponseLoaded,setForecastGraphData,setTopTickers,setSelectedTicker){
@@ -22,7 +25,8 @@ function fetchForecastResponse(setForecastResponse, setForecastResponseLoaded,se
             setForecastGraphData({
                 'historical': response['data'][Object.keys(response['data'])[0]]['historical'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0]),
                 'prediction': response['data'][Object.keys(response['data'])[0]]['prediction'].map(item => [{ 'x': item[0], 'y': item[1] }]).map(item => item[0])})
-        }).then(() => setForecastResponseLoaded(true));
+        }).then(() => setForecastResponseLoaded(true))
+        .catch(error => console.log(error));
 }
 
 function setNewForecast(forecastResponse, setForecastGraphData, ticker){
@@ -139,14 +143,16 @@ const WSBAnalytics = () => {
                 const loadedEdges = new DataSet(response['data']['edges']);
                 setNetworkData({
                     data:{nodes: loadedNodes, edges: loadedEdges},
-                    options:{physics:false,interaction:{zoomView:false}}})});
+                    options:{physics:false,interaction:{zoomView:false}}})})
+                    .catch(error => console.log(error));
     },[]);
 
     useEffect(() => {
         setRecentLoaded(false);
         axios.get('https://storage.googleapis.com/jasonswebsite_cached_data/'+tableDateRange+'hourstable.json')
             .then(response => setRecentTableData(response.data.tickers))
-            .then(() => setRecentLoaded(true));
+            .then(() => setRecentLoaded(true))
+            .catch(error => console.log(error));
     }, [tableDateRange]);
 
     //Creates the chart when the state is updated
