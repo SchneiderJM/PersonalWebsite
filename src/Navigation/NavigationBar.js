@@ -20,7 +20,6 @@ const NavigationBar = () => {
                 className={classes.brandBurger}/>
             </Navbar.Brand>
             <Nav.Link as={Link} onClick={() => setShowBar(!showBar)} to='/' >Homepage</Nav.Link>
-            <Nav.Link as={Link} onClick={() => setShowBar(!showBar)} to='/Twitter_Cloud'>Twitter Cloud</Nav.Link>
             <Nav.Link as={Link} onClick={() => setShowBar(!showBar)} to='/Reddit_Classifier'>Reddit Post Classifier</Nav.Link>
             <Nav.Link as={Link} onClick={() => setShowBar(!showBar)} to='/WSB_Analytics'>WallStreetBets Analytics</Nav.Link>
             <Nav.Link as={Link} onClick={() => setShowBar(!showBar)} to='/Contact'>Contact</Nav.Link>
@@ -39,7 +38,6 @@ const NavigationBar = () => {
             <Navbar.Brand><img src={Logo} alt='Where Logo' className={classes.cornerLogo} /></Navbar.Brand>
             <Nav className = 'mr-auto'>
                 <Nav.Link as={Link} to='/' >Homepage</Nav.Link>
-                <Nav.Link as={Link} to='/Twitter_Cloud'>Twitter Cloud</Nav.Link>
                 <Nav.Link as={Link} to='/Reddit_Classifier'>Reddit Post Classifier</Nav.Link>
                 <Nav.Link as={Link} to='/WSB_Analytics'>WallStreetBets Analytics</Nav.Link>
                 <Nav.Link as={Link} to='/Contact'>Contact</Nav.Link>
